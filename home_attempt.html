@@ -1,0 +1,177 @@
+<!DOCTYPE html> <!-- HTML tag to the browser -->
+<html lang="en"> <!-- Eng tag -->
+
+<head>
+    <meta charset="UTF-8"> <!-- Supports most characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes page responsive on mobile -->
+
+    <title>Antique Bookshop (Simple Version)</title> <!-- Title TAG -->
+
+    <style>
+        body { /* primary page styling */
+            margin: 0; /* Removes default spacing */
+            font-family: Arial, sans-serif; /* font */
+            background: #f2f2f2; /* set background to Light grey */
+            color: #111; /* text color to Dark coloring */
+        }
+
+        .container { /* Main wrapper box */
+            max-width: 1000px; /* Limits width for readability */
+            margin: auto; /* Centers the page */
+            background: white; /* White content area */
+            padding: 20px; /* Inner spacing */
+        }
+
+        header { /* Top section */
+            border-bottom: 1px solid #ddd; /* Light line under header */
+            padding-bottom: 10px; /* Space below header */
+        }
+
+        nav { /* Navigation bar */
+            display: flex; /* Put links in a row */
+            gap: 15px; /* Space between links */
+            margin-top: 10px; /* Space above nav */
+        }
+
+        nav a { /* Each nav link */
+            text-decoration: none; /* Removes underline */
+            color: #555; /* Grey text */
+            font-weight: bold; /* Makes text thicker */
+        }
+
+        nav a.active { /* Highlight current page */
+            color: black; /* Dark text */
+        }
+
+        h1 { /* Main title */
+            font-size: 40px; /* Big text */
+            margin: 20px 0; /* Space above and below */
+        }
+
+     
+
+        .filters button { /* Each filter button */
+            padding: 8px 12px; /* Button size */
+            margin-right: 5px; /* Space between buttons */
+            border: none; /* No border */
+            background: #eee; /* Light grey background */
+            cursor: pointer; /* Shows clickable cursor */
+        }
+
+        .books { /* Book list container */
+            display: flex; /* Row layout */
+            flex-wrap: wrap; /* Wrap to next line */
+            gap: 15px; /* Space between books */
+        }
+
+        .book { /* Single book card */
+            width: 180px; /* Fixed card width */
+            background: #fafafa; /* Light background */
+            padding: 10px; /* Inner spacing */
+            border: 1px solid #ddd; /* Thin border */
+        }
+
+        .book img { /* Book image */
+            width: 100%; /* Full card width */
+            height: 250px; /* Fixed height */
+            object-fit: cover; /* Crops image nicely */
+        }
+
+        .title { /* Book title */
+            font-weight: bold; /* Strong text */
+            margin-top: 10px; /* Space above */
+            font-size: 14px; /* Small readable size */
+        }
+
+        .meta { /* Author + price */
+            font-size: 12px; /* Smaller text */
+            color: #666; /* Grey text */
+        }
+
+        .search-bar { /* Simple AI bar (not sticky) */
+            margin-top: 30px; /* Space above */
+            display: flex; /* Row layout */
+        }
+
+        .search-bar input { /* Input box */
+            flex: 1; /* Takes full width */
+            padding: 10px; /* Inner spacing */
+            border: 1px solid #ccc; /* Light border */
+        }
+
+        .search-bar button { /* Send button */
+            padding: 10px 15px; /* Button size */
+            border: none; /* No border */
+            background: black; /* Black button */
+            color: white; /* White text */
+        }
+    </style>
+</head>
+
+<body> <!-- Visible page content starts -->
+
+<div class="container"> <!-- Main content wrapper -->
+
+    <header> <!-- Top section -->
+        <h2>Antique Bookshop</h2> <!-- Site name -->
+
+        <nav> <!-- Enable Navigation links -->
+            <a href="#">Home</a> <!-- Link -->
+            <a href="#" class="active">Catalogue</a> <!-- Current page -->
+            <a href="#">About</a> <!-- Link -->
+            <a href="#">Contact</a> <!-- Link -->
+        </nav>
+    </header>
+
+    <h1>Latest Catalogue</h1> <!-- Big page title -->
+
+    <div class="filters"> <!-- Filter buttons -->
+        <button>All</button>
+        <button>Classics</button>
+        <button>Manuscripts</button>
+        <button>Rare Books</button>
+    </div>
+
+    <div class="books"> <!-- Book grid -->
+
+        <div class="book"> <!-- Book card -->
+            <img src="https://cdn.kobo.com/book-images/9b2213f4-8845-4ab7-b4f8-93e5c347389f/1200/1200/False/the-iliad-121.jpg"> <!-- Book image -->
+            <div class="title">The Iliad</div> <!-- Book title -->
+            <div class="meta">Homer - $145</div> <!-- Author + price -->
+        </div>
+
+        <div class="book">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Leviathan_by_Thomas_Hobbes.jpg">
+            <div class="title">Leviathan</div>
+            <div class="meta">Thomas Hobbes - $2100</div>
+        </div>
+
+        <div class="book">
+            <img src="https://i.pinimg.com/736x/6d/0f/ef/6d0fefa4f5598b7d1a8a06331096d0d7.jpg">
+            <div class="title">Finnegans Wake</div>
+            <div class="meta">James Joyce - $950</div>
+        </div>
+
+        <div class="book">
+            <img src="https://i.pinimg.com/1200x/2b/e6/e7/2be6e7510f648d9efbfbab469e36bbde.jpg">
+            <div class="title">Ivan Ilyich</div>
+            <div class="meta">Leo Tolstoy - $730</div>
+        </div>
+
+        <div class="book">
+            <img src="https://i.pinimg.com/736x/f2/45/82/f24582e5ef3acd79a253cf92fb08ae0e.jpg">
+            <div class="title">Zarathustra</div>
+            <div class="meta">Nietzsche - $1200</div>
+        </div>
+
+    </div>
+
+    <div class="search-bar"> <!-- Simple input area -->
+        <input type="text" placeholder="Ask the librarian..."> <!-- Input box -->
+        <button>Send</button> <!-- Button -->
+    </div>
+
+</div>
+
+</body>
+</html>
