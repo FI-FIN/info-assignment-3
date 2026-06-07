@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Antique Bookshop & Curios</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            background-color: lightgray;
+            padding: 15px;
+        }
+
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .container {
+            margin: 20px;
+        }
+
+        .book-section {
+            display: flex;
+            gap: 20px;
+        }
+
+        .book-image img {
+            width: 250px;
+        }
+
+        .book-info {
+            max-width: 500px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .details {
+            margin-top: 20px;
+            border-top: 1px solid gray;
+            padding-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Antique Bookshop & Curios</h1>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Catalogue</a>
+            <a href="#">About</a>
+        </nav>
+
+    </header>
+
+    <div class="container">
+
+        <p><a href="#">← Back to Catalogue</a></p>
+
+        <div class="book-section">
+
+            <div class="book-image">
+
+                <img src="https://m.media-amazon.com/images/I/51ZW9mt2rFL._AC_UF1000,1000_QL80_.jpg"
+                     alt="Book Cover">
+
+            </div>
+
+            <div class="book-info">
+
+                <h2>Tractatus Logico-Philosophicus</h2>
+
+                <h3>Ludwig Wittgenstein</h3>
+
+                <p>
+                    A famous work of philosophy first published in 1922.
+                </p>
+
+                <button onclick="addBook()">
+                    Add to Cart
+                </button>
+
+                <div class="details">
+
+                    <p><strong>Price:</strong> $3200 AUD</p>
+
+                    <p><strong>Publication Date:</strong> 1922</p>
+
+                    <p><strong>Condition:</strong> Fine</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <h3>Description</h3>
+
+        <p>
+            The Tractatus Logico-Philosophicus is one of the most influential
+            philosophical texts of the twentieth century. This edition contains
+            both German and English text.
+        </p>
+
+        <h3>Ask a Question</h3>
+
+        <input type="text" placeholder="Enter a question">
+
+        <button>
+            Submit
+        </button>
+
+    </div>
+
+    <script>
+
+        function addBook() {
+            alert("Book added to cart");
+        }
+
+    </script>
+
+</body>
+
+</html>
