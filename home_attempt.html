@@ -1,174 +1,288 @@
-<!DOCTYPE html> <!-- HTML tag to the browser -->
-<html lang="en"> <!-- Eng tag -->
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- Supports most characters -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes page responsive on mobile -->
-
-    <title>Antique Bookshop (Simple Version)</title> <!-- Title TAG -->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliotheca | Interactive Catalogue</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
+    
     <style>
-        body { /* primary page styling */
-            margin: 0; /* Remove default spacing */
-            font-family: Arial, sans-serif;
-            background: #f2f2f2; /* background = Light grey */
-            color: #111; /* text color = Dark coloring */
+        :root {
+            --ink: #1A1A1A;
+            --bg: #ffffff;
+            --muted: #8E8E93;
+            --heritage: #A39684;
+            --pill-bg: #F2F2F7;
+            --border: #EEEEEE;
         }
 
-        .container { /* Main wrapper box */
-            max-width: 1000px; /* Limits width for readability */
-            margin: auto; /* Centers the page */
-            background: white; /* White content area */
-            padding: 20px; /* Inner spacing */
+        body, html {
+            margin: 0; padding: 0;
+            background-color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        header { /* Top section */
-            border-bottom: 1px solid #ddd; /* Light line under header */
-            padding-bottom: 10px; /* Space below header */
+        .viewport {
+            max-width: 1440px;
+            margin: 0 auto;
+            background-color: var(--bg);
+            min-height: 100vh;
+            padding-bottom: 180px;
+            box-shadow: 0 0 100px rgba(0,0,0,0.1);
+            position: relative;
         }
 
-        nav { /* Navigation bar */
-            display: flex; /* Put links in a row */
-            gap: 15px; /* Space between links */
-            margin-top: 10px; /* Space above nav */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
         }
 
-        nav a { /* Each nav link */
-            text-decoration: none; /* Removes underline */
-            color: #555; /* Grey text */
-            font-weight: bold; /* Makes text thicker */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
         }
 
-        nav a.active { /* Highlight current page */
-            color: black; /* Dark text */
+        .brand-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--heritage);
+            margin-bottom: 25px;
         }
 
-        h1 { /* M title */
-            font-size: 40px; /* Big text */
-            margin: 20px 0; /* Space above and below */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .filters button { /* Each filter button */
-            padding: 8px 12px; /* Button size */
-            margin-right: 5px; /* Space between buttons */
-            border: none; /* No border */
-            background: #eee; /* Light grey background */
-            cursor: pointer; /* Shows clickable cursor */
+        /* --- Updated Navigation Styling for Links --- */
+        .nav-links { display: flex; gap: 25px; list-style: none; padding: 0; margin: 0; }
+        .nav-links li a { 
+            text-decoration: none;
+            font-size: 11px; font-weight: 800; text-transform: uppercase; 
+            letter-spacing: 0.1em; color: var(--muted);
+            transition: color 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links li.active a { color: var(--ink); border-bottom: 2px solid var(--ink); }
+        .nav-links li a:hover { color: var(--ink); }
+
+        .header-utils { display: flex; gap: 15px; align-items: center; }
+        .icon-circle {
+            width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .books { /* Book list container */
-            display: flex; /* Row layout */
-            flex-wrap: wrap; /* Wrap to next line */
-            gap: 15px; /* Space between books */
+        .hero-section {
+            padding: 50px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
-        .book { /* Single book card */
-            width: 180px; /* Fixed card width */
-            background: #fafafa; /* Light background */
-            padding: 10px; /* Inner spacing */
-            border: 1px solid #ddd; /* Thin border */
+        .hero-title {
+            font-size: 86px;
+            font-weight: 900;
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+            margin: 0;
         }
 
-        .book img { /* Book image */
-            width: 100%; /* Full card width */
-            height: 250px; /* Fixed height */
-            object-fit: cover; /* Crops image nicely */
+        .hero-subtext {
+            font-size: 17px;
+            color: var(--muted);
+            max-width: 480px;
+            margin-top: 25px;
+            line-height: 1.5;
+            font-weight: 500;
         }
 
-        .title { /* Book title */
-            font-weight: bold; /* Strong text */
-            margin-top: 10px; /* Space above */
-            font-size: 14px; /* Small readable size */
+        .filter-row {
+            display: flex; gap: 12px; margin-bottom: 60px;
         }
 
-        .meta { /* Author + price */
-            font-size: 12px; /* Smaller text */
-            color: #666; /* Grey text */
+        .pill {
+            padding: 12px 26px; border-radius: 50px; font-size: 14px;
+            font-weight: 700; background: var(--pill-bg); border: none;
+            cursor: pointer;
+        }
+        .pill.active { background: var(--ink); color: #fff; }
+
+        .inventory-meta {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; border-bottom: 1.5px solid var(--ink); padding-bottom: 15px;
+        }
+        .grid-header { font-size: 26px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; margin: 0; }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 45px 25px;
         }
 
-        .search-bar { /* AI bar */
-            margin-top: 30px; 
-            display: flex; /* Row layout */
+        .book-card-link { text-decoration: none; color: inherit; display: block; }
+
+        .book-item {
+            display: flex; flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .book-item:hover { transform: translateY(-10px); }
+
+        .image-container {
+            width: 100%; aspect-ratio: 2 / 3; border-radius: 4px;
+            background-size: cover; background-position: center;
+            background-color: #f4f4f4; position: relative;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .search-bar input { /* Input box */
-            flex: 1; /* Takes full width */
-            padding: 10px; /* Inner spacing */
-            border: 1px solid #ccc; /* Light border */
+        .cart-overlay {
+            position: absolute; bottom: 15px; right: 15px;
+            width: 40px; height: 40px; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .search-bar button { /* Send button */
-            padding: 10px 15px; /* Button size */
-            border: none; /* No border */
-            background: black; /* Black button */
-            color: white; /* White text */
+        .book-name { margin-top: 18px; font-size: 14px; font-weight: 800; line-height: 1.25; text-transform: uppercase; min-height: 36px;}
+        .book-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 6px; }
+
+        .ai-sticky-container {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            display: flex; justify-content: center; padding: 50px 0;
+            background: linear-gradient(transparent, #ffffff 40%);
+            z-index: 1000;
         }
+
+        .ai-pill {
+            width: 900px; background: #fff; border: 1px solid #e0e0e0;
+            border-radius: 100px; padding: 12px 12px 12px 35px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        }
+
+        .ai-placeholder { color: #A1A1A6; font-size: 17px; }
+        .ai-btn {
+            width: 48px; height: 48px; background: var(--ink);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        }
+
     </style>
 </head>
+<body>
 
-<body> <!-- Visible page content starts -->
+<div class="viewport">
+    <div class="container">
+        
+        <header>
+            <div class="brand-label">Antique Books and Curios</div>
+            <div class="top-nav">
+                <ul class="nav-links">
+                    <li><a href="home.html">Home</a></li>
+                    <li class="active"><a href="index.html">Catalogue</a></li>
+                    <li><a href="lubwig_INDA_PAGE Final.html">Wittgenstein</a></li>
+                    <li><a href="New_INDA_PAGE.html">Inquiry</a></li>
+                </ul>
+                <div class="header-utils">
+                    <div class="icon-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+                    <div class="icon-circle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+                </div>
+            </div>
+        </header>
 
-<div class="container"> <!-- Main content wrapper -->
+        <section class="hero-section">
+            <div>
+                <h1 class="hero-title">Latest<br>Catalogue</h1>
+                <p class="hero-subtext">Supplying books to collectors, libraries & readers for over 50 years.</p>
+            </div>
+            <div class="filter-row">
+                <button class="pill active">All Books</button>
+                <button class="pill">First Editions</button>
+                <button class="pill">Manuscripts</button>
+            </div>
+        </section>
 
-    <header> <!-- Top section -->
-        <h2>Antique Bookshop</h2> <!-- Site name -->
+        <div class="inventory-meta">
+            <h2 class="grid-header">Featured Inventory</h2>
+        </div>
+        
+        <div class="book-grid">
+            
+            <!-- Link 1: The Iliad -->
+            <a href="iliad.html" class="book-card-link">
+                <div class="book-item">
+                    <div class="image-container" style="background-image: url('https://cdn.kobo.com/book-images/9b2213f4-8845-4ab7-b4f8-93e5c347389f/1200/1200/False/the-iliad-121.jpg');">
+                        <div class="cart-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+                    </div>
+                    <div class="book-name">The Iliad</div>
+                    <div class="book-meta">HOMER / 1715 / $145</div>
+                </div>
+            </a>
 
-        <nav> <!-- Enable Navigation links -->
-            <a href="#">Home</a> <!-- Link -->
-            <a href="#" class="active">Catalogue</a> <!-- Current page -->
-            <a href="#">About</a> <!-- Link -->
-            <a href="#">Contact</a> <!-- Link -->
-        </nav>
-    </header>
+            <!-- Link 2: Leviathan -->
+            <a href="leviathan.html" class="book-card-link">
+                <div class="book-item">
+                    <div class="image-container" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a1/Leviathan_by_Thomas_Hobbes.jpg');">
+                        <div class="cart-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+                    </div>
+                    <div class="book-name">Leviathan</div>
+                    <div class="book-meta">HOBBES / 1651 / $2100</div>
+                </div>
+            </a>
 
-    <h1>Latest Catalogue</h1> <!-- Big page title -->
+            <!-- Link 3: Finnegans Wake -->
+            <a href="finnegans_wake.html" class="book-card-link">
+                <div class="book-item">
+                    <div class="image-container" style="background-image: url('https://i.pinimg.com/736x/6d/0f/ef/6d0fefa4f5598b7d1a8a06331096d0d7.jpg');">
+                        <div class="cart-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+                    </div>
+                    <div class="book-name">Finnegans Wake</div>
+                    <div class="book-meta">JAMES JOYCE / 1939 / $950</div>
+                </div>
+            </a>
 
-    <div class="filters"> <!-- Filter buttons -->
-        <button>All</button>
-        <button>Classics</button>
-        <button>Manuscripts</button>
-        <button>Rare Books</button>
+            <!-- Link 4: Ivan Ilyich -->
+            <a href="ivan_ilyich.html" class="book-card-link">
+                <div class="book-item">
+                    <div class="image-container" style="background-image: url('https://i.pinimg.com/1200x/2b/e6/e7/2be6e7510f648d9efbfbab469e36bbde.jpg');">
+                        <div class="cart-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+                    </div>
+                    <div class="book-name">Death of Ivan Ilyich</div>
+                    <div class="book-meta">TOLSTOY / 1886 / $730</div>
+                </div>
+            </a>
+
+            <!-- Link 5: Zarathustra -->
+            <a href="Thus_Spoke_PAGE.html" class="book-card-link">
+                <div class="book-item">
+                    <div class="image-container" style="background-image: url('https://i.pinimg.com/736x/f2/45/82/f24582e5ef3acd79a253cf92fb08ae0e.jpg');">
+                        <div class="cart-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+                    </div>
+                    <div class="book-name">Thus Spoke Zarathustra</div>
+                    <div class="book-meta">NIETZSCHE / 1883 / $1200</div>
+                </div>
+            </a>
+
+        </div>
     </div>
+</div>
 
-    <div class="books"> <!-- Book grid -->
-
-        <div class="book"> <!-- Book card -->
-            <img src="https://cdn.kobo.com/book-images/9b2213f4-8845-4ab7-b4f8-93e5c347389f/1200/1200/False/the-iliad-121.jpg"> <!-- Book image -->
-            <div class="title">The Iliad</div> <!-- Book title -->
-            <div class="meta">Homer - $145</div> <!-- Author + price -->
+<div class="ai-sticky-container">
+    <div class="ai-pill">
+        <div class="ai-placeholder">Ask the Digital Librarian to find something specific...</div>
+        <div class="ai-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M12 19l7-7-7-7M5 12h14"/></svg>
         </div>
-
-        <div class="book">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Leviathan_by_Thomas_Hobbes.jpg">
-            <div class="title">Leviathan</div>
-            <div class="meta">Thomas Hobbes - $2100</div>
-        </div>
-
-        <div class="book">
-            <img src="https://i.pinimg.com/736x/6d/0f/ef/6d0fefa4f5598b7d1a8a06331096d0d7.jpg">
-            <div class="title">Finnegans Wake</div>
-            <div class="meta">James Joyce - $950</div>
-        </div>
-
-        <div class="book">
-            <img src="https://i.pinimg.com/1200x/2b/e6/e7/2be6e7510f648d9efbfbab469e36bbde.jpg">
-            <div class="title">Ivan Ilyich</div>
-            <div class="meta">Leo Tolstoy - $730</div>
-        </div>
-
-        <div class="book">
-            <img src="https://i.pinimg.com/736x/f2/45/82/f24582e5ef3acd79a253cf92fb08ae0e.jpg">
-            <div class="title">Zarathustra</div>
-            <div class="meta">Nietzsche - $1200</div>
-        </div>
-
     </div>
-
-    <div class="search-bar"> <!-- Simple input area -->
-        <input type="text" placeholder="Ask the librarian..."> <!-- Input box -->
-        <button>Send</button> <!-- Button -->
-    </div>
-
 </div>
 
 </body>
