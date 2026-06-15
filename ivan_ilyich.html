@@ -1,20 +1,266 @@
-<div class="ref-id">ARCHIVE REF: TOL-1886-D</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliotheca | The Death of Ivan Ilyich</title>
+    
+    <!-- Consistent Project Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ink: #000000;
+            --bg-page: #ffffff;
+            --bg-visual: #EAEAEA; 
+            --muted-text: #8E8E93;
+            --heritage: #A39684;
+            --border-line: #E5E5E5;
+        }
+
+        /* --- RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--ink); background-color: var(--bg-page); overflow: hidden; }
+
+        /* --- HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            border-bottom: 1px solid var(--border-line);
+            background: #fff;
+            position: relative;
+            z-index: 100;
+        }
+
+        .brand-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--heritage);
+        }
+
+        nav ul { display: flex; gap: 30px; list-style: none; }
+        nav li { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-text); cursor: pointer; }
+        nav li.active { color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 2px; }
+
+        .cart-btn {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border-line);
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: calc(100vh - 85px);
+        }
+
+        /* --- LEFT SIDE VISUAL --- */
+        .visual-side {
+            background-color: var(--bg-visual);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+        }
+
+        .book-cover-wrapper {
+            width: 80%;
+            max-width: 420px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+        }
+
+        .book-cover-wrapper img {
+            width: 100%;
+            display: block;
+            border-radius: 2px;
+        }
+
+        /* --- RIGHT SIDE INFO --- */
+        .info-side {
+            padding: 60px 80px;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .info-side::-webkit-scrollbar { display: none; }
+
+        .back-link {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 800;
+            text-decoration: none; color: var(--ink);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .ref-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--heritage);
+            letter-spacing: 0.2em;
+            margin-bottom: 8px;
+        }
+
+        .item-title {
+            font-size: 52px;
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .author {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--muted-text);
+            margin-bottom: 40px;
+        }
+
+        /* --- ACTION PILLS --- */
+        .action-group { display: flex; flex-direction: column; gap: 15px; max-width: 450px; margin-bottom: 50px; }
+
+        .btn-add {
+            background: var(--ink);
+            color: white;
+            border: none;
+            padding: 22px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+        .btn-add:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        .ai-input {
+            border: 1px solid var(--border-line);
+            border-radius: 50px;
+            padding: 12px 12px 12px 25px;
+            display: flex; justify-content: space-between; align-items: center;
+            color: var(--muted-text);
+            font-size: 14px;
+        }
+        .ai-circle { width: 34px; height: 34px; background: black; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+        /* --- DATA GRID --- */
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-line);
+            margin-bottom: 50px;
+        }
+
+        .data-point { display: flex; flex-direction: column; gap: 5px; }
+        .label { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--muted-text); letter-spacing: 0.1em; }
+        .value { font-size: 16px; font-weight: 700; }
+
+        /* --- LIBRARIAN SECTION --- */
+        .librarian-section h3 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 15px; }
+        .note-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            line-height: 1.5;
+            font-style: italic;
+            color: #333;
+            max-width: 580px;
+        }
+
+        .badge-row { display: flex; gap: 10px; margin-top: 30px; }
+        .badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; padding: 5px 10px; background: #F2F2F2; border-radius: 4px; font-weight: 700; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-label">Antique Books and Curios</div>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li class="active">Catalogue</li>
+                <li>Exhibitions</li>
+                <li>About</li>
+            </ul>
+        </nav>
+        <div class="cart-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+    </header>
+
+    <main class="main-container">
+        
+        <!-- Left Side: Visual Experience -->
+        <div class="visual-side">
+            <div class="book-cover-wrapper">
+                <img src="https://i.pinimg.com/1200x/2b/e6/e7/2be6e7510f648d9efbfbab469e36bbde.jpg" alt="The Death of Ivan Ilyich Cover">
+            </div>
+        </div>
+
+        <!-- Right Side: Archival Information -->
+        <div class="info-side">
+            <a href="home_attempt.html" class="back-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3"><path d="M15 18l-6-6 6-6"/></svg>
+                Return to Catalogue
+            </a>
+
+            <div class="ref-id">ARCHIVE REF: TOL-1886-D</div>
             <h1 class="item-title">The Death of <br>Ivan Ilyich</h1>
             <div class="author">Leo Tolstoy</div>
 
             <div class="action-group">
-                <button class="btn-add">Add to Private Collection</button>
-                <div class="ai-input">Inquire about the Russian text...</div>
+                <button class="btn-add" onclick="alert('Item added to collection')">Add to Private Collection</button>
+                <div class="ai-input">
+                    Inquire about the Russian text...
+                    <div class="ai-circle">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M12 19l7-7-7-7M5 12h14"/></svg>
+                    </div>
+                </div>
             </div>
 
+            <!-- Technical Metadata Grid -->
             <div class="metadata-grid">
-                <div class="data-point"><div class="label">Current Valuation</div><div class="value">$730.00 AUD</div></div>
-                <div class="data-point"><div class="label">Date of Publication</div><div class="value">1886 (First Periodical Print)</div></div>
-                <div class="data-point"><div class="label">Physical Condition</div><div class="value">Fair / Aged Vellum</div></div>
-                <div class="data-point"><div class="label">Archival Status</div><div class="value">Verified Early Edition</div></div>
+                <div class="data-point">
+                    <div class="label">Current Valuation</div>
+                    <div class="value">$730.00 AUD</div>
+                </div>
+                <div class="data-point">
+                    <div class="label">Date of Publication</div>
+                    <div class="value">1886 (First Periodical Print)</div>
+                </div>
+                <div class="data-point">
+                    <div class="label">Physical Condition</div>
+                    <div class="value">Fair / Aged Vellum</div>
+                </div>
+                <div class="data-point">
+                    <div class="label">Archival Status</div>
+                    <div class="value">Verified Early Edition</div>
+                </div>
             </div>
 
+            <!-- Editorial Analysis Section -->
             <div class="librarian-section">
                 <h3>Librarian's Note</h3>
-                <p class="note-text">“Widely considered one of the finest examples of a novella. This early printing captures the visceral realism of Tolstoy's later philosophical period. Notable for its beautiful aged patina on the cover.”</p>
+                <p class="note-text">
+                    “Widely considered one of the finest examples of a novella. This early printing captures the visceral realism of Tolstoy's later philosophical period. Notable for its beautiful aged patina on the cover.”
+                </p>
+                <div class="badge-row">
+                    <div class="badge">RUSSIAN CLASSIC</div>
+                    <div class="badge">1880S ARCHIVE</div>
+                    <div class="badge">REALISM</div>
+                </div>
             </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

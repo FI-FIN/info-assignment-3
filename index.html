@@ -1,21 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Info Assignment 3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliotheca | Interactive Search</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1A1A1A;
+            --bg: #ffffff;
+            --muted: #8E8E93;
+            --heritage: #A39684;
+            --border: #EEEEEE;
+        }
+
+        body, html { margin: 0; padding: 0; background-color: #f8f8f8; font-family: 'Inter', sans-serif; color: var(--ink); overflow-x: hidden; }
+        .viewport { max-width: 1440px; margin: 0 auto; background-color: #fff; min-height: 100vh; position: relative; box-shadow: 0 0 100px rgba(0,0,0,0.1); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+
+        /* --- HEADER & TOP-RIGHT SEARCH --- */
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .brand { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: var(--heritage); }
+        
+        .header-utils { display: flex; gap: 15px; align-items: center; position: relative; }
+
+        /* SEARCH INTERACTION */
+        .search-container { display: flex; align-items: center; gap: 10px; }
+        #search-input-wrap { 
+            width: 0; overflow: hidden; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            display: flex; align-items: center;
+        }
+        #search-input-wrap.active { width: 300px; }
+        
+        .header-search-bar {
+            width: 100%; padding: 10px 15px; border-radius: 30px; border: 1.5px solid var(--ink);
+            font-family: 'Inter'; font-size: 14px; outline: none;
+        }
+
+        .icon-circle { 
+            width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); 
+            display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; background: #fff; position: relative; text-decoration: none; color: #000;
+        }
+        .icon-circle:hover { border-color: var(--ink); }
+
+        #cart-count { 
+            position: absolute; top: -5px; right: -5px; background: #000; color: #fff; 
+            font-size: 10px; width: 18px; height: 18px; border-radius: 50%; 
+            display: none; align-items: center; justify-content: center; font-weight: 900; 
+        }
+
+        /* --- NAVIGATION --- */
+        .nav-links { display: flex; gap: 35px; list-style: none; padding: 0; margin: 0; }
+        .nav-links li { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+        .nav-links li.active { color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
+
+        /* 1. Remove the default blue/purple and underlines */
+        .nav-links a {
+            text-decoration: none; /* Removes the underline */
+            color: var(--muted);    /* Sets the color to your designer grey */
+            transition: color 0.2s; /* Makes the hover feel smooth */
+        }
+
+        /* 2. Change color to black when the mouse hovers over it */
+        .nav-links a:hover {
+            color: var(--ink); 
+        }
+
+        /* 3. Logic for the 'Active' page */
+        .nav-links li.active a {
+            color: var(--ink); /* Keep it black */
+            font-weight: 900;  /* Make it extra bold */
+            /* If you want NO underline at all, ensure there is no border-bottom here */
+            border-bottom: none; 
+        }
+
+        /* --- CONTENT --- */
+        .hero-title { font-size: 82px; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; margin: 60px 0 20px; }
+        
+        #ai-response { display: none; border-left: 4px solid #000; padding: 20px 0 20px 30px; margin: 40px 0; max-width: 850px; animation: slideIn 0.5s ease-out; }
+        .ai-text { font-size: 24px; font-weight: 500; line-height: 1.4; color: #333; }
+        .ai-label { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
+
+        .book-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; margin-top: 40px; padding-bottom: 100px;}
+        .book-card { text-decoration: none; color: inherit; transition: transform 0.3s; display: flex; flex-direction: column; }
+        .book-card:hover { transform: translateY(-10px); }
+        .img-box { width: 100%; aspect-ratio: 2/3; background-size: cover; background-position: center; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .b-title { font-size: 13px; font-weight: 800; margin-top: 15px; text-transform: uppercase; min-height: 32px; }
+        .b-meta { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--muted); margin-top: 5px; }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+    </style>
 </head>
-<body>
+<body onload="init()">
+    <div class="viewport">
+        <div class="container">
+            <header>
+                <div class="brand-row">
+                    <div class="brand">Antique Books and Curios</div>
+                    
+                    <div class="header-utils">
+                        <!-- Top Right Search Utility -->
+                        <div class="search-container">
+                            <div id="search-input-wrap">
+                                <input type="text" id="header-search" class="header-search-bar" placeholder="Find a book...">
+                            </div>
+                            <div class="icon-circle" onclick="toggleSearch()">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            </div>
+                        </div>
 
-  <h4><b>The Antique Bookshop & Curios</b></h4>
+                        <!-- Cart Utility -->
+                        <a href="cart.html" class="icon-circle">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                            <div id="cart-count">0</div>
+                        </a>
+                    </div>
+                </div>
+                
+                <ul class="nav-links">
+                    <!-- Set class="active" only on the page you are currently on -->
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="#">Exhibitions</a></li>
+                    <li><a href="about_page.html">About</a></li>
+                </ul>
+            </header>
 
-    <h1></h1>
+            <section class="hero-section">
+                <h1 id="page-heading" class="hero-title">Latest<br>Catalogue</h1>
+                
+                <div id="ai-response">
+                    <div class="ai-label">Digital Librarian Active Query</div>
+                    <div class="ai-text" id="ai-text">Scanning the vault...</div>
+                </div>
 
-    <h1 style="font-size: 50px;">Latest<br>  Catalogue</h1>
-    
-    <h2 style="font-size: 15px;"><i>Supplying books to collectors, libraries & readers for over 50 years</i></h2>
+                <div class="book-grid" id="grid"></div>
+            </section>
+        </div>
+    </div>
 
-    <h2>Featured Inventory</h2>
-  <p></p>
+    <script src="data.js"></script>
+    <script>
+        const grid = document.getElementById('grid');
+        const searchInput = document.getElementById('header-search');
+        const searchWrap = document.getElementById('search-input-wrap');
+        const aiResponse = document.getElementById('ai-response');
+        const aiText = document.getElementById('ai-text');
+        const heading = document.getElementById('page-heading');
 
+        function init() {
+            renderGrid(Object.keys(inventory));
+            updateCartUI();
+        }
+
+        function toggleSearch() {
+            searchWrap.classList.toggle('active');
+            if (searchWrap.classList.contains('active')) {
+                searchInput.focus();
+            }
+        }
+
+        function renderGrid(keys) {
+            grid.innerHTML = '';
+            keys.forEach(key => {
+                const book = inventory[key];
+                grid.innerHTML += `
+                    <a href="product.html?id=${key}" class="book-card">
+                        <div class="img-box" style="background-image: url('${book.img}')"></div>
+                        <div class="b-title">${book.title}</div>
+                        <div class="b-meta">${book.author} / $${book.price}</div>
+                    </a>
+                `;
+            });
+        }
+
+        function executeSearch() {
+            const query = searchInput.value.toLowerCase();
+            if (!query) return;
+
+            const matches = Object.keys(inventory).filter(key => 
+                inventory[key].title.toLowerCase().includes(query) || 
+                inventory[key].author.toLowerCase().includes(query)
+            );
+
+            heading.innerHTML = "Search<br>Results";
+            aiResponse.style.display = 'block';
+            
+            if (matches.length > 0) {
+                aiText.innerHTML = `Identified <b>${matches.length} matches</b> in the archival inventory. I recommend starting with the <b>${inventory[matches[0]].title}</b>.`;
+                renderGrid(matches);
+            } else {
+                aiText.innerHTML = "No exact matches found. Would you like me to query our partner libraries?";
+                renderGrid([]);
+            }
+        }
+
+        searchInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") executeSearch();
+        });
+    </script>
 </body>
 </html>

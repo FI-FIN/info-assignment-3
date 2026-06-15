@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bibliotheca | Product Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --ink: #000; --muted: #8E8E93; --border: #E5E5E5; --success: #2A9B7E; }
+        body { margin: 0; font-family: 'Inter', sans-serif; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; border-bottom: 1px solid var(--border); background: #fff; }
+        .brand { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: #A39684; }
+        .cart-icon { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; text-decoration: none; color: #000; }
+        #cart-count { position: absolute; top: -5px; right: -5px; background: #000; color: #fff; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-weight: 900; }
+        
+        .main { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 85px); }
+        .visual { background: #EAEAEA; display: flex; justify-content: center; align-items: center; }
+        .visual img { width: 70%; max-width: 400px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+        .info { padding: 80px; overflow-y: auto; }
+        .title { font-size: 52px; font-weight: 900; line-height: 0.95; letter-spacing: -0.05em; text-transform: uppercase; margin: 10px 0; }
+        
+        .btn-add { background: #000; color: #fff; padding: 22px; border-radius: 50px; border: none; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; cursor: pointer; margin: 40px 0; width: 100%; transition: 0.3s; }
+        .btn-add.added { background: var(--success); }
+
+        .metadata { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; border-top: 1px solid var(--border); padding-top: 30px; }
+        .label { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; }
+        .value { font-size: 16px; font-weight: 700; margin-top: 5px; }
+    </style>
+</head>
+<body onload="init()">
+    <header>
+        <div class="brand">Antique Books and Curios</div>
+        <a href="cart.html" class="cart-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <div id="cart-count">0</div>
+        </a>
+    </header>
+
+    <div class="main">
+        <div class="visual"><img id="b-img" src=""></div>
+        <div class="info">
+            <a href="index.html" style="text-decoration:none; color:#000; font-weight:800; font-size:12px; text-transform:uppercase;">← Catalogue</a>
+            <h1 id="b-title" class="title">...</h1>
+            <div id="b-author" style="font-size:24px; color:var(--muted); font-weight:600;">...</div>
+            
+            <button class="btn-add" id="add-btn" onclick="addItem()">Add to Private Collection</button>
+
+            <div class="metadata">
+                <div><div class="label">Valuation</div><div id="b-price" class="value">...</div></div>
+                <div><div class="label">Condition</div><div class="value">Museum Grade</div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const bookId = params.get('id');
+        const book = inventory[bookId];
+
+        function init() {
+            document.getElementById('b-title').innerText = book.title;
+            document.getElementById('b-author').innerText = book.author;
+            document.getElementById('b-price').innerText = "$" + book.price + ".00 AUD";
+            document.getElementById('b-img').src = book.img;
+            updateCartUI();
+        }
+
+        function addItem() {
+            let cart = getCart();
+            cart.push(bookId);
+            localStorage.setItem('bibliotheca_cart', JSON.stringify(cart));
+            
+            // Visual feedback on button
+            const btn = document.getElementById('add-btn');
+            btn.classList.add('added');
+            btn.innerText = "✓ Added to Collection";
+            
+            // Update the badge in the header instantly
+            updateCartUI();
+
+            // Reset button after 2 seconds
+            setTimeout(() => {
+                btn.classList.remove('added');
+                btn.innerText = "Add to Private Collection";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

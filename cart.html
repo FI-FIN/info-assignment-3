@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bibliotheca | Your Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #F9F9F9; padding: 80px; }
+        .cart-card { max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
+        .title { font-size: 32px; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; }
+        .item { display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #eee; }
+        .total { font-size: 24px; font-weight: 900; margin-top: 30px; display: flex; justify-content: space-between; }
+        .btn { display: block; background: #000; color: #fff; text-align: center; padding: 20px; text-decoration: none; font-weight: 800; text-transform: uppercase; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="cart-card">
+        <h1 class="title">Acquisition Review</h1>
+        <div id="cart-items"></div>
+        <div class="total">
+            <span>Total</span>
+            <span id="total-price">$0.00</span>
+        </div>
+        <a href="checkout.html" class="btn">Proceed to Secure Checkout</a>
+        <a href="index.html" style="display:block; text-align:center; margin-top:20px; color:#888; font-size:12px; text-transform:uppercase; font-weight:800; text-decoration:none;">Continue Browsing</a>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        const cart = JSON.parse(localStorage.getItem('bibliotheca_cart')) || [];
+        const container = document.getElementById('cart-items');
+        let total = 0;
+
+        cart.forEach((id, index) => {
+            const book = inventory[id];
+            total += book.price;
+            container.innerHTML += `
+                <div class="item">
+                    <span>${book.title}</span>
+                    <strong>$${book.price}</strong>
+                </div>
+            `;
+        });
+        document.getElementById('total-price').innerText = "$" + total + ".00 AUD";
+    </script>
+</body>
+</html>

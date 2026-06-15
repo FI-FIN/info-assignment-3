@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | The Antique Bookshop & Curios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1A1A1A;
+            --bg: #ffffff;
+            --muted: #8E8E93;
+            --heritage: #A39684;
+            --border: #EEEEEE;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: #f8f8f8;
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        .viewport {
+            max-width: 1440px;
+            margin: 0 auto;
+            background-color: var(--bg);
+            min-height: 100vh;
+            box-shadow: 0 0 100px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        /* --- HEADER & NAVIGATION FIX --- */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links { display: flex; gap: 40px; list-style: none; padding: 0; margin: 0; }
+        
+        /* Link Reset: Removes blue/purple and underlines */
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--muted); 
+            font-size: 13px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.12em; 
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--ink); }
+
+        .nav-links li.active a { 
+            color: var(--ink); 
+            border-bottom: 2px solid var(--ink); 
+            padding-bottom: 4px; 
+        }
+
+        /* Cart Icon Styling */
+        .cart-icon { 
+            width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); 
+            display: flex; align-items: center; justify-content: center; position: relative; 
+            text-decoration: none; color: #000; transition: border-color 0.2s;
+        }
+        .cart-icon:hover { border-color: var(--ink); }
+        
+        #cart-count { 
+            position: absolute; top: -5px; right: -5px; background: #000; color: #fff; 
+            font-size: 10px; width: 18px; height: 18px; border-radius: 50%; 
+            display: none; align-items: center; justify-content: center; font-weight: 900; 
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-title {
+            font-size: 96px;
+            font-weight: 900;
+            line-height: 0.85;
+            letter-spacing: -0.06em;
+            margin-bottom: 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: flex-start;
+        }
+
+        .editorial-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            line-height: 1.6;
+            font-style: italic;
+            color: #333;
+        }
+
+        .stat-block {
+            border-left: 3px solid var(--ink);
+            padding-left: 30px;
+        }
+
+        .stat-number { font-size: 48px; font-weight: 900; letter-spacing: -0.04em; }
+        .stat-label { font-family: 'JetBrains Mono'; font-size: 12px; text-transform: uppercase; color: var(--heritage); margin-top: 5px; }
+
+        /* --- CREDENTIALS --- */
+        .credentials-section {
+            padding: 100px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .trust-card {
+            width: 800px;
+            background: #F9F9F9;
+            padding: 60px;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+        }
+
+        .trust-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .trust-body { font-size: 15px; line-height: 1.7; color: #444; }
+        .trust-body b { color: #000; }
+
+        .logo-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .logo-placeholder {
+            height: 50px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono';
+            font-size: 10px;
+            color: #bbb;
+            background: white;
+            text-transform: uppercase;
+        }
+
+        /* --- CONTACT & FOOTER --- */
+        .visit-section {
+            padding: 100px 0;
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .contact-item h4 { font-family: 'JetBrains Mono'; font-size: 10px; text-transform: uppercase; color: var(--heritage); margin-bottom: 15px; }
+        .contact-item p { font-size: 16px; line-height: 1.6; opacity: 0.8; }
+
+    </style>
+</head>
+<body onload="updateCartUI()">
+
+<div class="viewport">
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="top-nav">
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: var(--heritage);">
+                    Antique Books and Curios
+                </div>
+                
+                <!-- FIXED NAVIGATION WITH LINKS -->
+                <ul class="nav-links">
+                    <!-- Set class="active" only on the page you are currently on -->
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="#">Exhibitions</a></li>
+                    <li><a href="about_page.html">About</a></li>
+                </ul>
+
+                <!-- ADDED CART ICON FOR PERSISTENCE -->
+                <a href="cart.html" class="cart-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <div id="cart-count">0</div>
+                </a>
+            </div>
+        </header>
+
+        <!-- Legacy Hero -->
+        <section class="hero-section">
+            <h1 class="hero-title">An Oasis<br>of Serenity.</h1>
+            <div class="hero-grid">
+                <div class="editorial-text">
+                    “Less than a 15-minute drive from the city centre is a sanctuary for the written word. We believe old books carry their own story, as well as the one within their pages.”
+                </div>
+                <div class="stat-block">
+                    <div class="stat-number">50+ Years</div>
+                    <div class="stat-label">Proprietor Experience / Sydney, NSW</div>
+                    <p style="font-size: 15px; margin-top: 20px; line-height: 1.6; color: var(--muted);">
+                        Proprietor Peter has been curating antique and collectible volumes for libraries, dealers, and individuals for nearly half a century.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Credentials -->
+        <section class="credentials-section">
+            <div class="trust-card">
+                <div>
+                    <div class="trust-title">Provenance & Integrity</div>
+                    <div class="trust-body">
+                        As a bona fide dealer in antiquarian books, we are committed to the highest standards. We guarantee <b>authenticity</b>, provide <b>transparent pricing</b>, and offer <b>honest descriptions</b> highlighting every unique defect or repair.
+                    </div>
+                </div>
+                <div class="logo-stack">
+                    <div class="logo-placeholder">Member ANZAAB</div>
+                    <div class="logo-placeholder">Member ILAB</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Archive Info -->
+        <section style="padding: 100px 0;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <h2 style="font-size: 42px; font-weight: 900; letter-spacing: -0.04em;">The Vault</h2>
+                <div style="font-family: 'JetBrains Mono'; font-size: 12px; color: var(--muted);">TOTAL INVENTORY: ~20,000 VOLUMES</div>
+            </div>
+            <p style="font-size: 18px; line-height: 1.7; margin-top: 40px; max-width: 800px;">
+                Our collection covers a vast itinerary of human history—from 18th-century English Atlases with hand-engraved maps to pristine, signed first editions of contemporary Booker Prize winners. We treat every volume with the utmost care, preserving them for future generations of bibliophiles.
+            </p>
+        </section>
+    </div>
+
+    <!-- Visit Footer -->
+    <section class="visit-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>Location</h4>
+                    <p>Tyrrell's Building<br>Level 1, 328 Pacific Highway<br>Crows Nest, Australia 2065</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Hours</h4>
+                    <p>Tuesday — Saturday<br>10am to 5pm</p>
+                    <p style="font-size: 12px; margin-top: 10px; opacity: 0.5;">Closed Sundays & Mondays</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Direct Inquiry</h4>
+                    <p>+61 2 9966 9925<br>peter@antiquebookshop.com.au</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- DATA & CART LOGIC -->
+<script src="data.js"></script>
+<script>
+    function updateCartUI() {
+        const cart = JSON.parse(localStorage.getItem('bibliotheca_cart')) || [];
+        const badge = document.getElementById('cart-count');
+        if (badge) {
+            badge.innerText = cart.length;
+            badge.style.display = cart.length > 0 ? 'flex' : 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
