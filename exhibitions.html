@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Antique Books and Curios</title>
+    <title>Exhibitions | Antique Books and Curios</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,7 +17,7 @@
         .viewport { max-width: 1440px; margin: 0 auto; background-color: #fff; min-height: 100vh; position: relative; box-shadow: 0 0 100px rgba(0,0,0,0.1); }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
 
-        /* --- HEADER (Exactly synced with Index) --- */
+        /* --- HEADER & NAVIGATION (Exactly synced with Index) --- */
         header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
         .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .brand { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: var(--heritage); }
@@ -45,12 +44,13 @@
         .nav-links li.active a { color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
 
         /* --- CONTENT --- */
-        .hero-title { font-size: 82px; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; margin: 60px 0 40px; }
-        .content-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; padding-bottom: 100px; }
-        .editorial-quote { font-family: 'Playfair Display', serif; font-size: 28px; font-style: italic; line-height: 1.6; color: #333; }
-        .stat-block { border-left: 3px solid var(--ink); padding-left: 30px; margin-bottom: 40px; }
-        .stat-number { font-size: 48px; font-weight: 900; letter-spacing: -0.04em; }
-        .stat-label { font-family: 'JetBrains Mono'; font-size: 11px; text-transform: uppercase; color: var(--heritage); margin-top: 5px; }
+        .hero-title { font-size: 82px; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; margin: 60px 0 60px; }
+        .event-card { display: grid; grid-template-columns: 350px 1fr; background: #F9F9F9; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 40px; }
+        .event-image { background-color: #ddd; background-size: cover; background-position: center; }
+        .event-info { padding: 40px; }
+        .event-date { font-family: 'JetBrains Mono'; font-size: 12px; color: var(--heritage); text-transform: uppercase; margin-bottom: 10px; }
+        .event-name { font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 15px; }
+        .event-desc { font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.6; font-style: italic; color: #444; }
     </style>
 </head>
 <body onload="updateCartUI()">
@@ -68,20 +68,19 @@
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="exhibitions.html">Exhibitions</a></li>
-                    <li class="active"><a href="about_page.html">About</a></li>
+                    <li class="active"><a href="exhibitions.html">Exhibitions</a></li>
+                    <li><a href="about_page.html">About</a></li>
                 </ul>
             </header>
 
-            <h1 class="hero-title">An Oasis<br>of Serenity.</h1>
-            <div class="content-grid">
-                <div class="editorial-quote">“Less than a 15-minute drive from the city centre is a sanctuary for the written word.”</div>
-                <div>
-                    <div class="stat-block">
-                        <div class="stat-number">50+ Years</div>
-                        <div class="stat-label">Proprietor Experience / Sydney, NSW</div>
-                    </div>
-                    <p style="line-height: 1.7; color: #444;">Established in 1976, we are a bone fide dealer in antiquarian books and a proud member of <b>ANZAAB</b> and <b>ILAB</b>.</p>
+            <h1 class="hero-title">Exhibitions<br>& Events</h1>
+
+            <div class="event-card">
+                <div class="event-image" style="background-image: url('https://i.pinimg.com/736x/a4/ad/52/a4ad52af11e3d3f814a768c911081f38.jpg')"></div>
+                <div class="event-info">
+                    <div class="event-date">June 27, 2026</div>
+                    <h2 class="event-name">Melbourne Rare Book Fair</h2>
+                    <p class="event-desc">“Joining colleagues from across the globe at Wilson Hall. Showcasing 17th-century cartography and classical philosophy.”</p>
                 </div>
             </div>
         </div>

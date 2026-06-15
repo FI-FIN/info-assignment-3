@@ -6,7 +6,7 @@ const inventory = {
     "zarathustra": { title: "Thus Spoke Zarathustra", author: "Friedrich Nietzsche", price: 1200, img: "https://i.pinimg.com/736x/f2/45/82/f24582e5ef3acd79a253cf92fb08ae0e.jpg", ref: "NIET-1883" }
 };
 
-// Persistence Logic
+// Persistence Logica
 function getCart() {
     return JSON.parse(localStorage.getItem('bibliotheca_cart')) || [];
 }
