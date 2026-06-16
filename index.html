@@ -54,7 +54,7 @@
         /* --- NAVIGATION --- */
         .nav-links { display: flex; gap: 35px; list-style: none; padding: 0; margin: 0; }
         .nav-links li { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-        .nav-links li.active { color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
+        .nav-links li.active a { color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
 
         /* 1. Remove the default blue/purple and underlines */
         .nav-links a {
@@ -72,7 +72,6 @@
         .nav-links li.active a {
             color: var(--ink); /* Keep it black */
             font-weight: 900;  /* Make it extra bold */
-            /* If you want NO underline at all, ensure there is no border-bottom here */
             border-bottom: none; 
         }
 
@@ -83,12 +82,69 @@
         .ai-text { font-size: 24px; font-weight: 500; line-height: 1.4; color: #333; }
         .ai-label { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
 
-        .book-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; margin-top: 40px; padding-bottom: 100px;}
+        .book-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; margin-top: 40px; padding-bottom: 150px;}
         .book-card { text-decoration: none; color: inherit; transition: transform 0.3s; display: flex; flex-direction: column; }
         .book-card:hover { transform: translateY(-10px); }
         .img-box { width: 100%; aspect-ratio: 2/3; background-size: cover; background-position: center; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .b-title { font-size: 13px; font-weight: 800; margin-top: 15px; text-transform: uppercase; min-height: 32px; }
         .b-meta { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--muted); margin-top: 5px; }
+
+        /* --- STICKY AI BAR AT BASE --- */
+        .ai-sticky-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            background: linear-gradient(transparent, #ffffff 40%);
+            z-index: 1000;
+            pointer-events: none; /* Allows scrolling through the gradient */
+        }
+
+        .ai-pill {
+            width: 900px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 100px;
+            padding: 12px 12px 12px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            pointer-events: auto; /* Re-enable clicking for the bar itself */
+        }
+
+        .ai-pill input {
+            border: none;
+            width: 80%;
+            font-size: 17px;
+            outline: none;
+            font-family: 'Inter';
+            background: transparent;
+        }
+
+        .ai-btn {
+            width: 48px;
+            height: 48px;
+            background: var(--ink);
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .chevron-arrow {
+            width: 10px;
+            height: 10px;
+            border-top: 3px solid #fff;
+            border-right: 3px solid #fff;
+            transform: rotate(-45deg);
+            margin-top: 5px;
+        }
 
         @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
     </style>
@@ -130,74 +186,136 @@
                 <h1 id="page-heading" class="hero-title">Latest<br>Catalogue</h1>
                 
                 <div id="ai-response">
-                    <div class="ai-label">Digital Librarian Active Query</div>
-                    <div class="ai-text" id="ai-text">Scanning the vault...</div>
+                    <div class="ai-label">Digital Librarian Analysis</div>
+                    <div class="ai-text" id="ai-text">Scanning the cataloge...</div>
                 </div>
 
                 <div class="book-grid" id="grid"></div>
             </section>
         </div>
-    </div>
+
+        <!-- STICKY AI BAR AT BASE -->
+        <div class="ai-sticky-container">
+            <div class="ai-pill">
+                <input type="text" id="bottom-search" placeholder="Ask the Digital Librarian to find something specific...">
+                <!-- Change the onclick here -->
+                <button class="ai-btn" onclick="goToAI()">
+                    <div class="chevron-arrow"></div>
+                </button>
+            </div>
+        </div>
 
     <script src="data.js"></script>
-    <script>
-        const grid = document.getElementById('grid');
-        const searchInput = document.getElementById('header-search');
-        const searchWrap = document.getElementById('search-input-wrap');
-        const aiResponse = document.getElementById('ai-response');
-        const aiText = document.getElementById('ai-text');
-        const heading = document.getElementById('page-heading');
+<script>
+    const grid = document.getElementById('grid');
+    const bottomInput = document.getElementById('bottom-search');
+    const headerSearch = document.getElementById('header-search');
+    const searchWrap = document.getElementById('search-input-wrap');
+    
+    // Elements for the nice transitions
+    const aiResponse = document.getElementById('ai-response');
+    const aiText = document.getElementById('ai-text');
+    const heading = document.getElementById('page-heading');
 
-        function init() {
-            renderGrid(Object.keys(inventory));
-            updateCartUI();
-        }
+    function init() {
+        renderGrid(Object.keys(inventory));
+        updateCartUI();
+    }
 
-        function toggleSearch() {
-            searchWrap.classList.toggle('active');
-            if (searchWrap.classList.contains('active')) {
-                searchInput.focus();
-            }
-        }
+    function toggleSearch() {
+        searchWrap.classList.toggle('active');
+        if (searchWrap.classList.contains('active')) headerSearch.focus();
+    }
 
-        function renderGrid(keys) {
-            grid.innerHTML = '';
-            keys.forEach(key => {
-                const book = inventory[key];
-                grid.innerHTML += `
-                    <a href="product.html?id=${key}" class="book-card">
-                        <div class="img-box" style="background-image: url('${book.img}')"></div>
-                        <div class="b-title">${book.title}</div>
-                        <div class="b-meta">${book.author} / $${book.price}</div>
-                    </a>
-                `;
-            });
-        }
-
-        function executeSearch() {
-            const query = searchInput.value.toLowerCase();
-            if (!query) return;
-
-            const matches = Object.keys(inventory).filter(key => 
-                inventory[key].title.toLowerCase().includes(query) || 
-                inventory[key].author.toLowerCase().includes(query)
-            );
-
-            heading.innerHTML = "Search<br>Results";
-            aiResponse.style.display = 'block';
-            
-            if (matches.length > 0) {
-                aiText.innerHTML = `Identified <b>${matches.length} matches</b> in the archival inventory. I recommend starting with the <b>${inventory[matches[0]].title}</b>.`;
-                renderGrid(matches);
-            } else {
-                aiText.innerHTML = "No exact matches found. Would you like me to query our partner libraries?";
-                renderGrid([]);
-            }
-        }
-
-        searchInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") executeSearch();
+    function renderGrid(keys) {
+        grid.innerHTML = '';
+        keys.forEach(key => {
+            const b = inventory[key];
+            // FIXED: Changed back to b-title and b-meta to connect with your CSS
+            grid.innerHTML += `
+                <a href="product.html?id=${key}" class="book-card">
+                    <div class="img-box" style="background-image: url('${b.img}')"></div>
+                    <div class="b-title">${b.title}</div>
+                    <div class="b-meta">${b.author} / $${b.price}</div>
+                </a>
+            `;
         });
-    </script>
-</body>
-</html>
+    }
+
+    // --- THE TRANSITION LOGIC ---
+    async function executeLibrarianSearch(query) {
+        if (!query) return;
+
+        // 1. "Thinking" State (The nice fade out)
+        grid.style.transition = "opacity 0.4s ease";
+        grid.style.opacity = "0.2";
+        if(heading) heading.innerHTML = "Consulting<br>Stacks...";
+        
+        if(aiResponse) {
+            aiResponse.style.display = 'block';
+            aiText.innerHTML = "Cross-referencing metadata indices...";
+        }
+
+        // Simulated AI 'thought' time (1.2 seconds)
+        await new Promise(resolve => setTimeout(resolve, 1200));
+
+        const matches = Object.keys(inventory).filter(key => 
+            inventory[key].title.toLowerCase().includes(query.toLowerCase()) || 
+            inventory[key].author.toLowerCase().includes(query.toLowerCase())
+        );
+
+        // 2. "Found" State (Fade back in)
+        if(heading) heading.innerHTML = "AI Search<br>";
+        grid.style.opacity = "1";
+        
+        if (matches.length > 0) {
+            const bestMatch = inventory[matches[0]];
+            aiText.innerHTML = `I have identified <b>${matches.length} match(es)</b>. Based on your inquiry, I recommend the <b>${bestMatch.title}</b>.`;
+            renderGrid(matches);
+        } else {
+            aiText.innerHTML = `I apologize. I could not locate any volumes matching "<b>${query}</b>". Shall I broaden the search?`;
+            renderGrid([]);
+        }
+    }
+
+    // Listeners
+    bottomInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") executeLibrarianSearch(bottomInput.value);
+    });
+
+    // --- BASIC HEADER SEARCH LOGIC ---
+    function executeHeaderSearch() {
+        const query = headerSearch.value.toLowerCase();
+        
+        // If the user clears the search and hits enter, reset the page
+        if (!query) {
+            if (heading) heading.innerHTML = "Latest<br>Catalogue";
+            renderGrid(Object.keys(inventory));
+            searchWrap.classList.remove('active');
+            return;
+        }
+
+        // Find matches in the inventory
+        const matches = Object.keys(inventory).filter(key => 
+            inventory[key].title.toLowerCase().includes(query) || 
+            inventory[key].author.toLowerCase().includes(query)
+        );
+
+        // UPDATE THE TITLE HERE
+        if (heading) heading.innerHTML = "Search<br>";
+
+        // Silently update the grid with the results
+        renderGrid(matches);
+        
+        // Optional: close the search bar after hitting enter to keep it sleek
+        searchWrap.classList.remove('active');
+    }
+
+    // Listener for Enter key on the top-right search bar
+    headerSearch.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault(); // Prevents page reload
+            executeHeaderSearch();
+        }
+    });
+</script>
