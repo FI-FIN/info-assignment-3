@@ -2,23 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bibliotheca | Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Antique Bookshop & Curios | Checkout</title>
+    
+    <!-- Grabbed fonts from google -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background: #F2F2F2; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .box { width: 450px; background: #fff; padding: 40px; }
-        input { width: 100%; padding: 15px; margin: 10px 0 20px; border: 1px solid #ddd; box-sizing: border-box; }
-        .btn { width: 100%; background: #000; color: #fff; border: none; padding: 20px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+        /* --- WEBSITE CONTAINER AND BODY --- */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #F2F2F2; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0;
+        }
+        
+        /* The main form container */
+        .box { 
+            width: 450px; 
+            background-color: #ffffff; 
+            padding: 40px; 
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        /* Form inputs setup */
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            margin-top: 10px;
+            margin-bottom: 20px; 
+            border: 1px solid #dddddd; 
+            box-sizing: border-box; 
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Black submit button */
+        .btn { 
+            width: 100%; 
+            background-color: #000000; 
+            color: #ffffff; 
+            border: none; 
+            padding: 20px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background-color: #333333; 
+        }
+
+        /* Error message block (hidden by default) */
+        #ai-response {
+            display: none;
+        }
+
+        /* Red error message box style */
+        .error-message {
+            color: #D8000C;
+            background-color: #FFBABA;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: none; 
+        }
+
+        /* ========================================================= */
+        /* --- MOBILE STYLES FOR PHONES ---                          */
+        /* ========================================================= */
+        @media (max-width: 768px) {
+            .box {
+                width: 90% !important; 
+                padding: 25px !important;
+                margin: 0 auto;
+            }
+
+            input[type="text"] {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="box">
+    
+    <!-- The main checkout box -->
+    <div class="box" id="checkout-box">
         <h1 style="font-weight:900; text-transform:uppercase;">Secure Acquisition</h1>
-        <label>Full Name</label>
-        <input type="text" placeholder="Collector Name">
-        <label>Delivery Address</label>
-        <input type="text" placeholder="124 Heritage Lane...">
-        <button class="btn" onclick="location.href='thankyou.html'">Complete Purchase</button>
+        
+        <!-- Error box -->
+        <div id="error-msg" class="error-message">Please fill out all fields to complete the acquisition.</div>
+
+        <label for="name-input">Full Name</label>
+        <input type="text" id="name-input" placeholder="Collector Name" required value="">
+        
+        <label for="address-input">Delivery Address</label>
+        <input type="text" id="address-input" placeholder="124 Heritage Lane..." required value="">
+        
+        <!-- Run the validation check when clicked -->
+        <button class="btn" onclick="validateAndSubmit()">Complete Purchase</button>
     </div>
+
+    <script>
+        // FORM VALIDATION CHECK
+        function validateAndSubmit() {
+            console.log("Checking if inputs are empty...");
+            
+            // Retrieve values from input fields
+            var nameInputBox = document.getElementById('name-input');
+            var addressInputBox = document.getElementById('address-input');
+            var errorMsgBox = document.getElementById('error-msg');
+
+            var nameValue = nameInputBox.value;
+            var addressValue = addressInputBox.value;
+
+            // Trim spaces off the end of the text
+            var trimmedName = nameValue.trim();
+            var trimmedAddress = addressValue.trim();
+
+            if (trimmedName == "") {
+                console.log("Validation failed: Name is empty!");
+                errorMsgBox.style.display = 'block';
+                return; // Stop running the rest of the function!
+            }
+
+            if (trimmedAddress == "") {
+                console.log("Validation failed: Address is empty!");
+                errorMsgBox.style.display = 'block';
+                return; // Stop running the rest of the function!
+            }
+
+            // If we got here, everything is filled out correctly!
+            console.log("Validation passed! Directing to thank you page.");
+            errorMsgBox.style.display = 'none';
+            window.location.href = 'thankyou.html';
+        }
+    </script>
 </body>
 </html>

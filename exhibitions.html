@@ -2,89 +2,311 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exhibitions | Antique Books and Curios</title>
+    
+    <!-- Grabbed fonts from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --ink: #1A1A1A;
-            --bg: #ffffff;
-            --muted: #8E8E93;
-            --heritage: #A39684;
-            --border: #EEEEEE;
+        /* 
+         * EXHIBITIONS PAGE STYLES 
+         * No variables here, I copied the hex codes manually
+         * Dark Charcoal: #1A1A1A
+         * White: #ffffff
+         * Light Gray: #EEEEEE
+         * Muted Text: #8E8E93
+         * Logo Tan: #A39684
+         */
+
+        /* Setup the body */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f8f8f8; 
+            font-family: 'Inter', sans-serif; 
+            color: #1A1A1A; 
+            overflow-x: hidden; 
         }
 
-        body, html { margin: 0; padding: 0; background-color: #f8f8f8; font-family: 'Inter', sans-serif; color: var(--ink); overflow-x: hidden; }
-        .viewport { max-width: 1440px; margin: 0 auto; background-color: #fff; min-height: 100vh; position: relative; box-shadow: 0 0 100px rgba(0,0,0,0.1); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+        /* Copied body settings for html just in case */
+        html { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f8f8f8; 
+            font-family: 'Inter', sans-serif; 
+            color: #1A1A1A; 
+            overflow-x: hidden; 
+        }
 
-        /* --- HEADER & NAVIGATION (Exactly synced with Index) --- */
-        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
-        .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .brand { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: var(--heritage); }
+        .viewport { 
+            max-width: 1440px; 
+            margin: 0 auto; 
+            background-color: #ffffff; 
+            min-height: 100vh; 
+            position: relative; 
+            box-shadow: 0 0 100px rgba(0,0,0,0.1); 
+        }
         
-        .header-utils { display: flex; gap: 15px; align-items: center; position: relative; }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 60px; 
+        }
+
+        /* --- TOP HEADER (Copy pasted to match other pages) --- */
+        .top-header-area { 
+            padding: 24px 0; 
+            border-bottom: 1px solid #EEEEEE; 
+            margin-bottom: 40px; 
+        }
+
+        .brand-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px; 
+        }
+
+        .brand { 
+            font-size: 11px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.3em; 
+            color: #A39684; 
+        }
+        
+        .header-utils { 
+            display: flex; 
+            gap: 15px; 
+            align-items: center; 
+            position: relative; 
+        }
 
         .icon-circle { 
-            width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); 
-            display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; background: #fff; position: relative; text-decoration: none; color: #000;
+            width: 44px; 
+            height: 44px; 
+            border-radius: 50%; 
+            border: 1px solid #EEEEEE; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            background: #ffffff; 
+            position: relative; 
+            text-decoration: none; 
+            color: #000000;
         }
-        .icon-circle:hover { border-color: var(--ink); }
+
+        .icon-circle:hover { 
+            border-color: #1A1A1A; 
+        }
 
         #cart-count { 
-            position: absolute; top: -5px; right: -5px; background: #000; color: #fff; 
-            font-size: 10px; width: 18px; height: 18px; border-radius: 50%; 
-            display: none; align-items: center; justify-content: center; font-weight: 900; 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+            background: #000000; 
+            color: #ffffff; 
+            font-size: 10px; 
+            width: 18px; 
+            height: 18px; 
+            border-radius: 50%; 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 900; 
         }
 
-        .nav-links { display: flex; gap: 35px; list-style: none; padding: 0; margin: 0; }
-        .nav-links li { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-        .nav-links a { text-decoration: none; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--ink); }
-        .nav-links li.active a { color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
+        /* Navigation menu links */
+        .nav-links { 
+            display: flex; 
+            gap: 35px; 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
 
-        /* --- CONTENT --- */
-        .hero-title { font-size: 82px; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; margin: 60px 0 60px; }
-        .event-card { display: grid; grid-template-columns: 350px 1fr; background: #F9F9F9; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 40px; }
-        .event-image { background-color: #ddd; background-size: cover; background-position: center; }
-        .event-info { padding: 40px; }
-        .event-date { font-family: 'JetBrains Mono'; font-size: 12px; color: var(--heritage); text-transform: uppercase; margin-bottom: 10px; }
-        .event-name { font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 15px; }
-        .event-desc { font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.6; font-style: italic; color: #444; }
+        .nav-links li { 
+            font-size: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            color: #8E8E93; 
+        }
+
+        .nav-links a { 
+            text-decoration: none; 
+            color: #8E8E93; 
+            font-size: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            transition: color 0.2s; 
+        }
+
+        .nav-links a:hover { 
+            color: #1A1A1A; 
+        }
+
+        .nav-links li.active a { 
+            color: #1A1A1A; 
+            border-bottom: 2px solid #1A1A1A; 
+            padding-bottom: 4px; 
+        }
+
+        /* --- CONTENT STYLES --- */
+        .hero-title { 
+            font-size: 82px; 
+            font-weight: 900; 
+            line-height: 0.9; 
+            letter-spacing: -0.05em; 
+            margin: 60px 0 60px; 
+        }
+
+        /* Event layout cards */
+        .event-card { 
+            display: grid; 
+            grid-template-columns: 350px 1fr; 
+            background: #F9F9F9; 
+            border: 1px solid #EEEEEE; 
+            border-radius: 4px; 
+            overflow: hidden; 
+            margin-bottom: 40px; 
+        }
+
+        .event-image { 
+            background-color: #dddddd; 
+            background-size: cover; 
+            background-position: center; 
+        }
+
+        .event-info { 
+            padding: 40px; 
+        }
+
+        .event-date { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 12px; 
+            color: #A39684; 
+            text-transform: uppercase; 
+            margin-bottom: 10px; 
+        }
+
+        .event-name { 
+            font-size: 28px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: -0.02em; 
+            margin-bottom: 15px; 
+        }
+
+        .event-desc { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 18px; 
+            line-height: 1.6; 
+            font-style: italic; 
+            color: #444444; 
+        }
+        
+        /* ========================================================= */
+        /* --- MOBILE STYLING (RESPONSIVENESS)                       */
+        /* ========================================================= */
+        @media (max-width: 768px) {
+            .container { 
+                padding: 0 20px; 
+            }
+            
+            .hero-title { 
+                font-size: 48px; 
+                margin: 30px 0 30px; 
+            }
+
+            .nav-links { 
+                display: flex; 
+                gap: 15px; 
+                flex-wrap: wrap; 
+                justify-content: flex-start;
+            }
+            
+            .nav-links li {
+                font-size: 10px; 
+            }
+            
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            /* Stack cards vertically on phones */
+            .event-card {
+                display: flex;
+                flex-direction: column; 
+            }
+
+            .event-image {
+                width: 100%;
+                height: 250px; 
+            }
+
+            .event-info {
+                width: 100%;
+                padding: 24px;
+                box-sizing: border-box;
+            }
+        }
     </style>
 </head>
 <body onload="updateCartUI()">
-    <div class="viewport">
-        <div class="container">
-            <header>
-                <div class="brand-row">
-                    <div class="brand">Antique Books and Curios</div>
-                    <div class="header-utils">
-                        <a href="cart.html" class="icon-circle">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <div class="viewport" id="main-viewport-div">
+        <div class="container" id="main-container-div">
+            
+            <!-- Replaced header with standard div -->
+            <div class="top-header-area" id="top-header-box">
+                <div class="brand-row" id="brand-row-box">
+                    <div class="brand" id="logo-text">Antique Books and Curios</div>
+                    <div class="header-utils" id="right-side-utils">
+                        
+                        <!-- Cart Link -->
+                        <a href="cart.html" class="icon-circle" id="cart-btn-link">
+                            <!-- Unminified copy pasted SVG -->
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
                             <div id="cart-count">0</div>
                         </a>
+                        
                     </div>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href="exhibitions.html">Exhibitions</a></li>
-                    <li><a href="about_page.html">About</a></li>
+                
+                <ul class="nav-links" id="nav-ul">
+                    <li id="nav-home"><a href="index.html">Home</a></li>
+                    <li class="active" id="nav-exhib"><a href="exhibitions.html">Exhibitions</a></li>
+                    <li id="nav-about"><a href="about_page.html">About</a></li>
                 </ul>
-            </header>
+            </div>
 
-            <h1 class="hero-title">Exhibitions<br>& Events</h1>
+            <!-- Page Title -->
+            <h1 class="hero-title" id="exhibitions-big-title">Exhibitions<br>& Events</h1>
 
-            <div class="event-card">
-                <div class="event-image" style="background-image: url('https://i.pinimg.com/736x/a4/ad/52/a4ad52af11e3d3f814a768c911081f38.jpg')"></div>
-                <div class="event-info">
-                    <div class="event-date">June 27, 2026</div>
-                    <h2 class="event-name">Melbourne Rare Book Fair</h2>
-                    <p class="event-desc">“Joining colleagues from across the globe at Wilson Hall. Showcasing 17th-century cartography and classical philosophy.”</p>
+            <!-- Rare Book Fair Event Card -->
+            <div class="event-card" id="event-card-1">
+                <div class="event-image" id="event-img-div-1" style="background-image: url('https://i.pinimg.com/736x/a4/ad/52/a4ad52af11e3d3f814a768c911081f38.jpg')"></div>
+                <div class="event-info" id="event-info-div-1">
+                    <div class="event-date" id="date-label-1">June 27, 2026</div>
+                    <h2 class="event-name" id="name-label-1">Melbourne Rare Book Fair</h2>
+                    <p class="event-desc" id="desc-label-1">“Joining colleagues from across the globe at Wilson Hall. Showcasing 17th-century cartography and classical philosophy.”</p>
                 </div>
             </div>
+            
         </div>
     </div>
+    
+    <!-- Link the database and cart bubble checking scripts -->
     <script src="data.js"></script>
+    <script>
+
+        console.log("Exhibitions page loaded successfully");
+    </script>
 </body>
 </html>

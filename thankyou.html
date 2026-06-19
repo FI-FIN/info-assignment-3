@@ -2,12 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bibliotheca | Thank You</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
+    <!-- Viewport tag ensures text scales correctly on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Antique Bookshop & Curios | Thank You</title>
+    
+    <!-- Grabbed fonts from google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Setup the body and center the text */
+        body {
+            font-family: 'Inter', sans-serif; 
+            text-align: center; 
+            padding-top: 150px;
+            background-color: #f8f8f8;
+            margin: 0;
+        }
+
+        /* Big confirmation title */
+        h1 {
+            font-size: 80px; 
+            letter-spacing: -0.05em; 
+            text-transform: uppercase;
+            color: #1A1A1A;
+            margin-bottom: 20px;
+            line-height: 0.9;
+        }
+
+        /* Under title paragraph text */
+        p {
+            color: #888888;
+            font-size: 18px;
+        }
+
+        /* The back to home link button */
+        .back-link {
+            color: #000000; 
+            font-weight: 800; 
+            text-decoration: none; 
+            margin-top: 40px; 
+            display: inline-block; 
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #555555;
+            border-color: #555555;
+        }
+
+        /* MOBILE PHONES */
+        @media (max-width: 768px) {
+            body { 
+                padding-top: 100px; 
+                padding-left: 20px; 
+                padding-right: 20px; 
+            }
+            h1 { 
+                font-size: 48px; 
+            }
+            p { 
+                font-size: 16px; 
+            }
+        }
+    </style>
 </head>
-<body style="font-family:'Inter'; text-align:center; padding-top:150px;">
-    <h1 style="font-size:80px; letter-spacing:-0.05em; text-transform:uppercase;">Acquisition<br>Confirmed</h1>
-    <p style="color:#888;">Your archival volumes are being prepared for dispatch.</p>
-    <a href="index.html" onclick="localStorage.clear()" style="color:#000; font-weight:800; text-decoration:none; margin-top:40px; display:inline-block; border-bottom:2px solid #000;">Back to Home</a>
+<body>
+    
+    <!-- The main text on the screen -->
+    <h1 id="thankyou-title">Acquisition<br>Confirmed</h1>
+    <p id="thankyou-paragraph">Your archival volumes are being prepared for dispatch.</p>
+    
+    <!-- Clicking this link runs our custom javascript function below -->
+    <a href="index.html" class="back-link" id="home-link" onclick="clearEverything()">Back to Home</a>
+
+    <!-- UI Logic Script -->
+    <script>
+        // This function clears the shopping cart so the next visit starts fresh
+        function clearEverything() {
+            console.log("User is leaving, clearing local storage..."); // student debug line
+            window.localStorage.clear();
+        }
+    </script>
 </body>
 </html>

@@ -3,319 +3,761 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bibliotheca | Interactive Search</title>
+    <title>The Antique Bookshop & Curios</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
+    <!--
+     
+     Inter 
+     types: 
+        400 (Regular/Normal text)
+        700 (Bold text)     
+        900 (Extra Black title text) 
+     
+     
+     JetBrains Mono
+     types: 
+        500 (Medium thickness)
+        800 (Extra-bold thickness)
+
+
+    I think thats all :@
+     -->
     <style>
-        :root {
-            --ink: #1A1A1A;
-            --bg: #ffffff;
-            --muted: #8E8E93;
-            --heritage: #A39684;
-            --border: #EEEEEE;
+        /* 
+         * MY WEBSITE STYLES 
+         * Colors used:
+         * Dark Charcoal: #1A1A1A
+         * White: #ffffff
+         * Light Gray: #EEEEEE
+         * Muted Text: #8E8E93
+         * Logo Tan: #A39684
+         */
+
+        /* Set up the body */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f8f8f8; 
+            font-family: 'Inter', sans-serif; 
+            color: #1A1A1A; 
+            overflow-x: hidden; 
         }
 
-        body, html { margin: 0; padding: 0; background-color: #f8f8f8; font-family: 'Inter', sans-serif; color: var(--ink); overflow-x: hidden; }
-        .viewport { max-width: 1440px; margin: 0 auto; background-color: #fff; min-height: 100vh; position: relative; box-shadow: 0 0 100px rgba(0,0,0,0.1); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+        /* Copying the body setup just in case ;{}*/
+        html { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f8f8f8; 
+            font-family: 'Inter', sans-serif; 
+            color: #1A1A1A; 
+            overflow-x: hidden; 
+        }
 
-        /* --- HEADER & TOP-RIGHT SEARCH --- */
-        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
-        .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .brand { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: var(--heritage); }
-        
-        .header-utils { display: flex; gap: 15px; align-items: center; position: relative; }
+        /* Main box for the website */
+        .viewport { 
+            max-width: 1440px; 
+            margin: 0 auto; 
+            background-color: #ffffff; 
+            min-height: 100vh; 
+            position: relative; 
+            box-shadow: 0 0 100px rgba(0,0,0,0.1); 
+        }
 
-        /* SEARCH INTERACTION */
-        .search-container { display: flex; align-items: center; gap: 10px; }
+        /* Inner box to give pading on the sides p */
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 60px; 
+        }
+
+        /* --- TOP HEADER AREA --- */
+        header { 
+            padding: 24px 0; 
+            border-bottom: 1px solid #EEEEEE; 
+            margin-bottom: 40px; 
+        }
+
+        .brand-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px; 
+        }
+
+        .brand { 
+            font-size: 11px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.3em; 
+            color: #A39684; 
+        }
+
+        /* Top right icons rapper */
+        .header-utils { 
+            display: flex; 
+            gap: 15px; 
+            align-items: center; 
+            position: relative; 
+        }
+
+        /* Top right search wrapper */
+        .search-container { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+
+        /* Hiding the search bar by default */
         #search-input-wrap { 
-            width: 0; overflow: hidden; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
-            display: flex; align-items: center;
-        }
-        #search-input-wrap.active { width: 300px; }
-        
-        .header-search-bar {
-            width: 100%; padding: 10px 15px; border-radius: 30px; border: 1.5px solid var(--ink);
-            font-family: 'Inter'; font-size: 14px; outline: none;
+            width: 0; 
+            overflow: hidden; 
+            transition: width 0.4s ease;
+            display: flex; 
+            align-items: center; 
         }
 
+        /* adds this class to open it */
+        #search-input-wrap.active { 
+            width: 300px; 
+        }
+
+        /* The real search text box for inputs here ;? */
+        .header-search-bar { 
+            width: 100%; 
+            padding: 10px 15px; 
+            border-radius: 30px; 
+            border: 1.5px solid #1A1A1A; 
+            font-family: 'Inter', sans-serif; 
+            font-size: 14px; 
+            outline: none; 
+        }
+
+        /* --- ICONS --- */
+        /* Circle around the search icon */
         .icon-circle { 
-            width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); 
-            display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; background: #fff; position: relative; text-decoration: none; color: #000;
+            width: 44px; 
+            height: 44px; 
+            border-radius: 50%; 
+            border: 1px solid #EEEEEE; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            background: #ffffff; 
+            position: relative; 
+            text-decoration: none; 
+            color: #000000; 
         }
-        .icon-circle:hover { border-color: var(--ink); }
 
+        /* Hover effect for the icon circle */
+        .icon-circle:hover { 
+            border-color: #1A1A1A; 
+        }
+
+        /* The red notification bubble for the cart */
         #cart-count { 
-            position: absolute; top: -5px; right: -5px; background: #000; color: #fff; 
-            font-size: 10px; width: 18px; height: 18px; border-radius: 50%; 
-            display: none; align-items: center; justify-content: center; font-weight: 900; 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+            background: #000000; 
+            color: #ffffff; 
+            font-size: 10px; 
+            width: 18px; 
+            height: 18px; 
+            border-radius: 50%; 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 900; 
         }
 
-        /* --- NAVIGATION --- */
-        .nav-links { display: flex; gap: 35px; list-style: none; padding: 0; margin: 0; }
-        .nav-links li { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-        .nav-links li.active a { color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
-
-        /* 1. Remove the default blue/purple and underlines */
-        .nav-links a {
-            text-decoration: none; /* Removes the underline */
-            color: var(--muted);    /* Sets the color to your designer grey */
-            transition: color 0.2s; /* Makes the hover feel smooth */
+        /* --- LINKS --- */
+        .nav-links { 
+            display: flex; 
+            gap: 35px; 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
         }
 
-        /* 2. Change color to black when the mouse hovers over it */
-        .nav-links a:hover {
-            color: var(--ink); 
+        .nav-links li { 
+            font-size: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            color: #8E8E93; 
         }
 
-        /* 3. Logic for the 'Active' page */
-        .nav-links li.active a {
-            color: var(--ink); /* Keep it black */
-            font-weight: 900;  /* Make it extra bold */
+        .nav-links a { 
+            text-decoration: none; 
+            color: #8E8E93; 
+            transition: color 0.2s; 
+        }
+
+        .nav-links a:hover { 
+            color: #1A1A1A; 
+        }
+
+        /* Makes the current page link dark */
+        .nav-links li.active a { 
+            color: #1A1A1A; 
+            font-weight: 900; 
             border-bottom: none; 
         }
 
-        /* --- CONTENT --- */
-        .hero-title { font-size: 82px; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; margin: 60px 0 20px; }
-        
-        #ai-response { display: none; border-left: 4px solid #000; padding: 20px 0 20px 30px; margin: 40px 0; max-width: 850px; animation: slideIn 0.5s ease-out; }
-        .ai-text { font-size: 24px; font-weight: 500; line-height: 1.4; color: #333; }
-        .ai-label { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
-
-        .book-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; margin-top: 40px; padding-bottom: 150px;}
-        .book-card { text-decoration: none; color: inherit; transition: transform 0.3s; display: flex; flex-direction: column; }
-        .book-card:hover { transform: translateY(-10px); }
-        .img-box { width: 100%; aspect-ratio: 2/3; background-size: cover; background-position: center; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .b-title { font-size: 13px; font-weight: 800; margin-top: 15px; text-transform: uppercase; min-height: 32px; }
-        .b-meta { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--muted); margin-top: 5px; }
-
-        /* --- STICKY AI BAR AT BASE --- */
-        .ai-sticky-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 40px 0;
-            background: linear-gradient(transparent, #ffffff 40%);
-            z-index: 1000;
-            pointer-events: none; /* Allows scrolling through the gradient */
+        /* --- MAIN TEXT AND AI BOX --- */
+        .hero-title { 
+            font-size: 82px; 
+            font-weight: 900; 
+            line-height: 0.9; 
+            letter-spacing: -0.05em; 
+            margin: 60px 0 20px; 
         }
 
-        .ai-pill {
-            width: 900px;
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 100px;
-            padding: 12px 12px 12px 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-            pointer-events: auto; /* Re-enable clicking for the bar itself */
+        /* The box where the AI talks */
+        #ai-response { 
+            display: none; 
+            border-left: 4px solid #000000; 
+            padding: 20px 0 20px 30px; 
+            margin: 40px 0; 
+            max-width: 850px; 
+            animation: slideIn 0.5s ease-out; 
         }
 
-        .ai-pill input {
-            border: none;
-            width: 80%;
-            font-size: 17px;
-            outline: none;
-            font-family: 'Inter';
-            background: transparent;
+        .ai-text { 
+            font-size: 24px; 
+            font-weight: 500; 
+            line-height: 1.4; 
+            color: #333333; 
         }
 
-        .ai-btn {
-            width: 48px;
-            height: 48px;
-            background: var(--ink);
-            border-radius: 50%;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        .ai-label { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 11px; 
+            color: #8E8E93; 
+            text-transform: uppercase; 
+            margin-bottom: 10px; 
         }
 
-        .chevron-arrow {
-            width: 10px;
-            height: 10px;
-            border-top: 3px solid #fff;
-            border-right: 3px solid #fff;
-            transform: rotate(-45deg);
-            margin-top: 5px;
+        /* --- THE BOOKS --- */
+        /* Book container grid */
+        .book-grid_book_hold { 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 30px; 
+            margin-top: 40px; 
+            padding-bottom: 150px; 
         }
 
-        @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+        /* Individual book card */
+        .book-card { 
+            text-decoration: none; 
+            color: inherit; 
+            transition: transform 0.3s; 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+        .book-card:hover { 
+            transform: translateY(-10px); 
+        }
+
+        /* The book image */
+        .img-box { 
+            width: 100%; 
+            aspect-ratio: 2/3; 
+            background-size: cover; 
+            background-position: center; 
+            border-radius: 4px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+        }
+
+        .b-title { 
+            font-size: 13px; 
+            font-weight: 800; 
+            margin-top: 15px; 
+            text-transform: uppercase; 
+            min-height: 32px; 
+        }
+
+        .b-meta { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 10px; 
+            color: #8E8E93; 
+            margin-top: 5px; 
+        }
+
+        /* --- BOTTOM STICKY BAR --- */
+        .ai-sticky-container { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+            padding: 40px 0; 
+            background: linear-gradient(transparent, #ffffff 40%); 
+            z-index: 1000; 
+            pointer-events: none; 
+        }
+
+        .ai-pill { 
+            width: 900px; 
+            background: #ffffff; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 100px; 
+            padding: 12px 12px 12px 35px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12); 
+            pointer-events: auto; 
+        }
+
+        .ai-pill input { 
+            border: none; 
+            width: 80%; 
+            font-size: 17px; 
+            outline: none; 
+            font-family: 'Inter', sans-serif; 
+            background: transparent; 
+        }
+
+        .ai-btn { 
+            width: 48px; 
+            height: 48px; 
+            background: #1A1A1A; 
+            border-radius: 50%; 
+            border: none; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+        }
+
+        .chevron-arrow { 
+            width: 10px; 
+            height: 10px; 
+            border-top: 3px solid #ffffff; 
+            border-right: 3px solid #ffffff; 
+            transform: rotate(-45deg); 
+            margin-top: 5px; 
+        }
+
+        @keyframes slideIn { 
+            from { opacity: 0; transform: translateX(-10px); } 
+            to { opacity: 1; transform: translateX(0); } 
+        }
+
+        /* ========================================================= */
+        /* MOBILE STYLES */
+        /* ========================================================= */
+        @media (max-width: 800px) {
+            
+            .viewport { 
+                width: 100% !important; 
+                padding-bottom: 120px !important; 
+                box-shadow: none !important; 
+            }
+            
+            .container { 
+                padding: 0 20px !important; 
+            }
+
+            /* Redundantly defining all headers for mobile */
+            .hero-title { 
+                font-size: 42px !important; 
+                line-height: 1 !important; 
+            }
+            .item-title { 
+                font-size: 42px !important; 
+                line-height: 1 !important; 
+            }
+            .page-title { 
+                font-size: 42px !important; 
+                line-height: 1 !important; 
+            }
+            h1 { 
+                font-size: 42px !important; 
+                line-height: 1 !important; 
+            }
+
+            .hero-subtext { 
+                font-size: 15px !important; 
+            }
+            
+            header { 
+                padding: 20px 0 !important; 
+                margin-bottom: 20px !important; 
+            }
+            
+            /* Stacking the top bar */
+            .top-bar { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 15px; 
+            }
+            .brand-row { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 15px; 
+            }
+            
+            .header-utils { 
+                align-self: flex-end; 
+                margin-top: -30px; 
+            }
+            
+            .nav-links { 
+                overflow-x: auto; 
+                width: 100%; 
+                padding-bottom: 10px; 
+                gap: 20px !important; 
+                scrollbar-width: none; 
+            }
+            
+            .nav-links::-webkit-scrollbar { 
+                display: none; 
+            }
+            
+            /* Changing grid to 2 columns */
+            .book-grid_book_hold { 
+                grid-template-columns: repeat(2, 1fr) !important; 
+                gap: 20px 15px !important; 
+            }
+
+            /* Split screen overrides copied for every div */
+            .main-container { 
+                grid-template-columns: 1fr !important; 
+                height: auto !important; 
+            }
+            .content-grid_book_hold { 
+                grid-template-columns: 1fr !important; 
+                height: auto !important; 
+            }
+            .checkout-container { 
+                grid-template-columns: 1fr !important; 
+                height: auto !important; 
+            }
+            
+            .visual-side { padding: 30px 20px !important; }
+            .info-side { padding: 30px 20px !important; }
+            .review-side { padding: 30px 20px !important; }
+            .payment-side { padding: 30px 20px !important; }
+            
+            .metadata-grid_book_hold { 
+                grid-template-columns: 1fr !important; 
+                gap: 15px !important; 
+            }
+            
+            .book-cover-wrapper { 
+                width: 100% !important; 
+            }
+            
+            /* Shrinking the AI bar */
+            .ai-sticky-container { 
+                padding: 20px !important; 
+            }
+            
+            .ai-pill { 
+                width: 100% !important; 
+                padding: 8px 8px 8px 20px !important; 
+                border-radius: 40px !important; 
+            }
+            
+            .ai-pill input { 
+                font-size: 14px !important; 
+            }
+            
+            .ai-btn { 
+                width: 40px !important; 
+                height: 40px !important; 
+            }
+        }
     </style>
 </head>
+
+<!-- Body runs the init function to load the books -->
 <body onload="init()">
-    <div class="viewport">
-        <div class="container">
-            <header>
-                <div class="brand-row">
-                    <div class="brand">Antique Books and Curios</div>
+    
+    <!-- Main wrapper for the whole page -->
+    <div class="viewport" id="main-viewport-box">
+        
+        <!-- Container to keep things centered -->
+        <div class="container" id="main-container-box">
+            
+            <!-- TOP HEADER SECTION -->
+            <header id="top-header">
+                <div class="brand-row" id="brand-row-box">
                     
-                    <div class="header-utils">
-                        <!-- Top Right Search Utility -->
-                        <div class="search-container">
+                    <!-- Logo Text -->
+                    <div class="brand" id="brand-logo-text">Antique Books and Curios</div>
+                    
+                    <!-- Right side icons (Search and Cart) -->
+                    <div class="header-utils" id="header-right-side-icons">
+                        
+                        <!-- SEARCH BAR AREA -->
+                        <div class="search-container" id="top-search-area">
                             <div id="search-input-wrap">
-                                <input type="text" id="header-search" class="header-search-bar" placeholder="Find a book...">
+                                <input type="text" id="header-search" class="header-search-bar" placeholder="Find a book..." value="">
                             </div>
-                            <div class="icon-circle" onclick="toggleSearch()">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            
+                            <!-- Search Icon Button -->
+                            <div class="icon-circle" id="search-circle-btn" onclick="toggleSearch()">
+                                <!-- Copy pasted SVG for the magnifying glass -->
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
                             </div>
                         </div>
 
-                        <!-- Cart Utility -->
-                        <a href="cart.html" class="icon-circle">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        <!-- CART BUTTON AREA -->
+                        <a href="cart.html" class="icon-circle" id="cart-circle-btn">
+                            <!-- Copy pasted SVG for the shopping bag -->
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <!-- The little red number bubble -->
                             <div id="cart-count">0</div>
                         </a>
+                        
                     </div>
                 </div>
                 
-                <ul class="nav-links">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="exhibitions.html">Exhibitions</a></li>
-                    <li><a href="about_page.html">About</a></li>
+                <!-- NAVIGATION LINKS -->
+                <ul class="nav-links" id="navigation-list-ul">
+                    <li class="active" id="nav-item-home"><a href="index.html">Home</a></li>
+                    <li id="nav-item-exhibitions"><a href="exhibitions.html">Exhibitions</a></li>
+                    <li id="nav-item-about"><a href="about_page.html">About</a></li>
                 </ul>
             </header>
 
-            <section class="hero-section">
-                <h1 id="page-heading" class="hero-title">Latest<br>Catalogue</h1>
+            <!-- MAIN CONTENT SECTION -->
+            <section class="hero-section" id="hero-section-main">
                 
+                <!-- Big Page Title -->
+                <h1 id="page-header" class="hero-title">Latest<br>Catalogue</h1>
+                
+                <!-- AI Text Box (Hidden when page first loads) -->
                 <div id="ai-response">
-                    <div class="ai-label">Digital Librarian Analysis</div>
+                    <div class="ai-label" id="ai-label-text">Digital Librarian Analysis</div>
                     <div class="ai-text" id="ai-text">Scanning the cataloge...</div>
                 </div>
 
-                <div class="book-grid" id="grid"></div>
+                <!-- Where the javascript puts the books -->
+                <div class="book-grid_book_hold" id="grid_book_hold"></div>
+                
             </section>
         </div>
 
-        <!-- STICKY AI BAR AT BASE -->
-        <div class="ai-sticky-container">
-            <div class="ai-pill">
-                <input type="text" id="bottom-search" placeholder="Ask the Digital Librarian to find something specific...">
-                <!-- Change the onclick here -->
-                <button class="ai-btn" onclick="goToAI()">
-                    <div class="chevron-arrow"></div>
+        <!-- STICKY BOTTOM AI SEARCH BAR -->
+        <div class="ai-sticky-container" id="bottom-sticky-bar-wrap">
+            <div class="ai-pill" id="ai-pill-box">
+                
+                <!-- Input for the AI -->
+                <input type="text" id="bottom-search" placeholder="Ask the Digital Librarian to find something specific..." value="">
+                
+                <!-- AI Search Button -->
+                <!-- Got the value first then ran the function so it works -->
+                <button class="ai-btn" id="ai-submit-btn" onclick="var aiInput = document.getElementById('bottom-search').value; executeLibrarianSearch(aiInput);">
+                    <div class="chevron-arrow" id="chevron-icon-div"></div>
                 </button>
+                
             </div>
         </div>
+        
+    </div>
+</body>
 
     <script src="data.js"></script>
-<script>
-    const grid = document.getElementById('grid');
-    const bottomInput = document.getElementById('bottom-search');
-    const headerSearch = document.getElementById('header-search');
-    const searchWrap = document.getElementById('search-input-wrap');
-    
-    // Elements for the nice transitions
-    const aiResponse = document.getElementById('ai-response');
-    const aiText = document.getElementById('ai-text');
-    const heading = document.getElementById('page-heading');
 
-    function init() {
-        renderGrid(Object.keys(inventory));
-        updateCartUI();
-    }
+    <!-- UI Logic Script -->
+    <script>
+        // --- 1. GET ALL SCREEN ELEMENTS ---
+        var grid_book_hold = document.getElementById('grid_book_hold');
+        var little_ai_pill = document.getElementById('bottom-search');
+        var top_boy_search = document.getElementById('header-search');
+        var hide_full_search = document.getElementById('search-input-wrap');
+        var ai_container_box = document.getElementById('ai-response');
+        var ai_yap = document.getElementById('ai-text');
+        var header = document.getElementById('page-header');
 
-    function toggleSearch() {
-        searchWrap.classList.toggle('active');
-        if (searchWrap.classList.contains('active')) headerSearch.focus();
-    }
-
-    function renderGrid(keys) {
-        grid.innerHTML = '';
-        keys.forEach(key => {
-            const b = inventory[key];
-            // FIXED: Changed back to b-title and b-meta to connect with your CSS
-            grid.innerHTML += `
-                <a href="product.html?id=${key}" class="book-card">
-                    <div class="img-box" style="background-image: url('${b.img}')"></div>
-                    <div class="b-title">${b.title}</div>
-                    <div class="b-meta">${b.author} / $${b.price}</div>
-                </a>
-            `;
-        });
-    }
-
-    // --- THE TRANSITION LOGIC ---
-    async function executeLibrarianSearch(query) {
-        if (!query) return;
-
-        // 1. "Thinking" State (The nice fade out)
-        grid.style.transition = "opacity 0.4s ease";
-        grid.style.opacity = "0.2";
-        if(heading) heading.innerHTML = "Consulting<br>Stacks...";
-        
-        if(aiResponse) {
-            aiResponse.style.display = 'block';
-            aiText.innerHTML = "Cross-referencing metadata indices...";
+        // --- 2. START THE APP ---
+        function init() {
+            var allBooks = Object.keys(inventory);
+            rendergrid_book_hold(allBooks); 
+            
+            if (typeof updateCartUI === 'function') {
+                updateCartUI();
+            }
         }
 
-        // Simulated AI 'thought' time (1.2 seconds)
-        await new Promise(resolve => setTimeout(resolve, 1200));
-
-        const matches = Object.keys(inventory).filter(key => 
-            inventory[key].title.toLowerCase().includes(query.toLowerCase()) || 
-            inventory[key].author.toLowerCase().includes(query.toLowerCase())
-        );
-
-        // 2. "Found" State (Fade back in)
-        if(heading) heading.innerHTML = "AI Search<br>";
-        grid.style.opacity = "1";
-        
-        if (matches.length > 0) {
-            const bestMatch = inventory[matches[0]];
-            aiText.innerHTML = `I have identified <b>${matches.length} match(es)</b>. Based on your inquiry, I recommend the <b>${bestMatch.title}</b>.`;
-            renderGrid(matches);
-        } else {
-            aiText.innerHTML = `I apologize. I could not locate any volumes matching "<b>${query}</b>". Shall I broaden the search?`;
-            renderGrid([]);
+        // --- 3. SHOW / HIDE TOP SEARCH ---
+        function toggleSearch() {
+            var searchBoxWrap = document.getElementById('search-input-wrap');
+            var topSearchInput = document.getElementById('header-search');
+            
+            if (searchBoxWrap.classList.contains('active') == true) {
+                searchBoxWrap.classList.remove('active');
+            } else {
+                searchBoxWrap.classList.add('active');
+                topSearchInput.focus();
+            }
         }
-    }
 
-    // Listeners
-    bottomInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") executeLibrarianSearch(bottomInput.value);
-    });
+        // --- 4. DRAW BOOKS ON SCREEN ---
+        function rendergrid_book_hold(keys) {
+            var grid = document.getElementById('grid_book_hold');
+            grid.innerHTML = ""; // clear it out first
+            
+            for (var i = 0; i < keys.length; i++) {
+                var key = keys[i];
+                var b = inventory[key];
+                
+                var htmlString = "<a href='product.html?id=" + key + "' class='book-card'>";
+                htmlString = htmlString + "<div class='img-box' style='background-image: url(\"" + b.img + "\")'></div>";
+                htmlString = htmlString + "<div class='b-title'>" + b.title + "</div>";
+                htmlString = htmlString + "<div class='b-meta'>" + b.author + " / $" + b.price + "</div>";
+                htmlString = htmlString + "</a>";
+                
+                grid.innerHTML = grid.innerHTML + htmlString;
+            }
+        }
 
-    // --- BASIC HEADER SEARCH LOGIC ---
-    function executeHeaderSearch() {
-        const query = headerSearch.value.toLowerCase();
-        
-        // If the user clears the search and hits enter, reset the page
-        if (!query) {
-            if (heading) heading.innerHTML = "Latest<br>Catalogue";
-            renderGrid(Object.keys(inventory));
+        // --- 5. BOTTOM AI SEARCH BAR ---
+        function executeLibrarianSearch(user_type_text) {
+            if (user_type_text == "") {
+                return;
+            }
+
+            var grid = document.getElementById('grid_book_hold');
+            var header = document.getElementById('page-header');
+            var aiBox = document.getElementById('ai-response');
+            var aiText = document.getElementById('ai-text');
+
+            grid.style.transition = "opacity 0.4s ease";
+            grid.style.opacity = "0.2";
+            
+            if (header != null) {
+                header.innerHTML = "Consulting<br>Stacks...";
+            }
+            
+            if (aiBox != null) {
+                aiBox.style.display = "block";
+                aiText.innerHTML = "Cross-referencing metadata indices...";
+            }
+
+            setTimeout(function() {
+                var bingo_books = [];
+                var allKeys = Object.keys(inventory);
+
+                for (var i = 0; i < allKeys.length; i++) {
+                    var currentKey = allKeys[i];
+                    var book = inventory[currentKey];
+                    
+                    var titleLower = book.title.toLowerCase();
+                    var authorLower = book.author.toLowerCase();
+                    var searchLower = user_type_text.toLowerCase();
+                    
+                    if (titleLower.includes(searchLower) == true) {
+                        bingo_books.push(currentKey);
+                    } else if (authorLower.includes(searchLower) == true) {
+                        bingo_books.push(currentKey);
+                    }
+                }
+
+                if (header != null) {
+                    header.innerHTML = "AI Search<br>";
+                }
+                grid.style.opacity = "1";
+                
+                if (bingo_books.length > 0) {
+                    var bestMatch = inventory[bingo_books[0]];
+                    aiText.innerHTML = "I have identified <b>" + bingo_books.length + " match(es)</b>. Based on your inquiry, I recommend the <b>" + bestMatch.title + "</b>.";
+                    rendergrid_book_hold(bingo_books);
+                } else {
+                    aiText.innerHTML = "I apologize. I could not locate any volumes matching <b>" + user_type_text + "</b>. Shall I broaden the search?";
+                    rendergrid_book_hold([]);
+                }
+
+            }, 1200); 
+        }
+
+        // Bottom search event listener
+        document.getElementById('bottom-search').onkeypress = function(event) {
+            if (event.key == "Enter") {
+                var searchInputValue = document.getElementById('bottom-search').value;
+                executeLibrarianSearch(searchInputValue);
+            }
+        };
+
+        // --- 6. TOP RIGHT SEARCH BAR ---
+        function executetop_boy_search() {
+            var topSearchInput = document.getElementById('header-search');
+            var user_type_text = topSearchInput.value.toLowerCase();
+            
+            var aiBox = document.getElementById('ai-response');
+            var header = document.getElementById('page-header');
+            var searchWrap = document.getElementById('search-input-wrap');
+            
+            if (aiBox != null) {
+                aiBox.style.display = "none";
+            }
+            
+            if (user_type_text == "") {
+                if (header != null) {
+                    header.innerHTML = "Latest<br>Catalogue";
+                }
+                var allKeys = Object.keys(inventory);
+                rendergrid_book_hold(allKeys); 
+                searchWrap.classList.remove('active');
+                return;
+            }
+
+            var bingo_books = [];
+            var allKeys2 = Object.keys(inventory);
+
+            for (var i = 0; i < allKeys2.length; i++) {
+                var currentKey = allKeys2[i];
+                var book = inventory[currentKey];
+                
+                var titleLower = book.title.toLowerCase();
+                var authorLower = book.author.toLowerCase();
+                
+                if (titleLower.includes(user_type_text) == true) {
+                    bingo_books.push(currentKey);
+                } else if (authorLower.includes(user_type_text) == true) {
+                    bingo_books.push(currentKey);
+                }
+            }
+
+
+            if (bingo_books.length == 0) {
+                if (header != null) {
+                    header.innerHTML = "No results for '" + topSearchInput.value + "'";
+                }
+                rendergrid_book_hold([]); 
+            }
+
+
+            if (bingo_books.length > 0) {
+                if (header != null) {
+                    header.innerHTML = "Search";
+                }
+                rendergrid_book_hold(bingo_books);
+            }
+
             searchWrap.classList.remove('active');
-            return;
         }
 
-        // Find matches in the inventory
-        const matches = Object.keys(inventory).filter(key => 
-            inventory[key].title.toLowerCase().includes(query) || 
-            inventory[key].author.toLowerCase().includes(query)
-        );
-
-        // UPDATE THE TITLE HERE
-        if (heading) heading.innerHTML = "Search<br>";
-
-        // Silently update the grid with the results
-        renderGrid(matches);
-        
-        // Optional: close the search bar after hitting enter to keep it sleek
-        searchWrap.classList.remove('active');
-    }
-
-    // Listener for Enter key on the top-right search bar
-    headerSearch.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            e.preventDefault(); // Prevents page reload
-            executeHeaderSearch();
-        }
-    });
-</script>
+        // Top search event listener
+        document.getElementById('header-search').onkeypress = function(event) {
+            if (event.key == "Enter") {
+                event.preventDefault(); 
+                executetop_boy_search();
+            }
+        };
+    </script>

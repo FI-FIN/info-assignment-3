@@ -2,46 +2,207 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bibliotheca | Your Collection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Antique Bookshop & Curios | Your Collection</title>
+    
+    <!-- Getting fonts from google -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background: #F9F9F9; padding: 80px; }
-        .cart-card { max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
-        .title { font-size: 32px; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; }
-        .item { display: flex; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid #eee; }
-        .total { font-size: 24px; font-weight: 900; margin-top: 30px; display: flex; justify-content: space-between; }
-        .btn { display: block; background: #000; color: #fff; text-align: center; padding: 20px; text-decoration: none; font-weight: 800; text-transform: uppercase; margin-top: 40px; }
+        /* Setup the background */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #F9F9F9; 
+            padding: 80px; 
+        }
+        
+        /* The white box in the middle */
+        .cart-card { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background-color: #ffffff; 
+            padding: 40px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05); 
+            border-radius: 4px;
+        }
+        
+        /* The big title */
+        .title { 
+            font-size: 32px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            margin-bottom: 40px; 
+        }
+        
+        /* The row for each book */
+        .item { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 20px 0; 
+            border-bottom: 1px solid #eeeeee; 
+        }
+        
+        /* The total price row */
+        .total { 
+            font-size: 24px; 
+            font-weight: 900; 
+            margin-top: 30px; 
+            display: flex; 
+            justify-content: space-between; 
+        }
+        
+        /* The black checkout button */
+        .btn { 
+            display: block; 
+            background-color: #000000; 
+            color: #ffffff; 
+            text-align: center; 
+            padding: 20px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            margin-top: 40px;
+            transition: transform 0.2s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* The grey continue button */
+        .continue-btn {
+            display: block; 
+            text-align: center; 
+            margin-top: 20px; 
+            color: #888888; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            font-weight: 800; 
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .continue-btn:hover { 
+            color: #000000; 
+        }
+
+        /* MOBILE PHONES */
+        @media (max-width: 768px) {
+            
+            body { 
+                padding: 20px; 
+            }
+            
+            .cart-card {
+                width: 100% !important;
+                padding: 25px !important;
+                box-sizing: border-box;
+            }
+
+            .title { 
+                font-size: 24px; 
+                margin-bottom: 20px; 
+            }
+            
+            .item { 
+                font-size: 14px; 
+            }
+            
+            .total { 
+                font-size: 20px; 
+            }
+
+            .btn {
+                width: 100%;
+                padding: 18px;
+                font-size: 14px;
+                box-sizing: border-box; 
+            }
+        }
     </style>
 </head>
+
 <body>
-    <div class="cart-card">
-        <h1 class="title">Acquisition Review</h1>
+    <!-- Main white box -->
+    <div class="cart-card" id="cart-main-box">
+        
+        <h1 class="title" id="cart-h1-title">Acquisition Review</h1>
+        
+        <!-- Empty div where JS puts the books -->
         <div id="cart-items"></div>
-        <div class="total">
-            <span>Total</span>
+        
+        <!-- Total Row -->
+        <div class="total" id="total-row-div">
+            <span id="total-text-span">Total</span>
             <span id="total-price">$0.00</span>
         </div>
-        <a href="checkout.html" class="btn">Proceed to Secure Checkout</a>
-        <a href="index.html" style="display:block; text-align:center; margin-top:20px; color:#888; font-size:12px; text-transform:uppercase; font-weight:800; text-decoration:none;">Continue Browsing</a>
+        
+        <!-- Buttons at the bottom -->
+        <a href="checkout.html" class="btn" id="checkout-button">Proceed to Secure Checkout</a>
+        <a href="index.html" class="continue-btn" id="go-back-button">Continue Browsing</a>
+        
     </div>
 
+    <!-- Get the database -->
     <script src="data.js"></script>
+    
     <script>
-        const cart = JSON.parse(localStorage.getItem('bibliotheca_cart')) || [];
-        const container = document.getElementById('cart-items');
-        let total = 0;
+        // 1. Get the cart from storage
+        var storageString = window.localStorage.getItem('bibliotheca_cart');
+        var cartArray = [];
 
-        cart.forEach((id, index) => {
-            const book = inventory[id];
-            total += book.price;
-            container.innerHTML += `
-                <div class="item">
-                    <span>${book.title}</span>
-                    <strong>$${book.price}</strong>
-                </div>
-            `;
-        });
-        document.getElementById('total-price').innerText = "$" + total + ".00 AUD";
+        // Check if there is actually data in the storage
+        if (storageString != null) {
+            cartArray = JSON.parse(storageString);
+        }
+
+        var containerBox = document.getElementById('cart-items');
+        var totalPriceAmount = 0;
+
+        // 2. What to do if the cart is empty
+        if (cartArray.length == 0) {
+            
+
+            var emptyMessage = "<div class='item' style='color: #888888; font-style: italic;'>";
+            emptyMessage = emptyMessage + "Your archive collection is currently empty.";
+            emptyMessage = emptyMessage + "</div>";
+            
+            containerBox.innerHTML = emptyMessage;
+        }
+
+        // 3. What to do if the cart has books in it
+        if (cartArray.length > 0) {
+            
+            // Loop through all the books in the cart array
+            for (var i = 0; i < cartArray.length; i++) {
+                var bookId = cartArray[i];
+                var currentBook = inventory[bookId];
+
+
+                if (currentBook != null) {
+                    
+                    // Add the price to the total
+                    totalPriceAmount = totalPriceAmount + currentBook.price;
+                    
+                    // Build the HTML for the row piece by piece
+                    var bookHtml = "<div class='item'>";
+                    bookHtml = bookHtml + "<span>" + currentBook.title + "</span>";
+                    
+
+                    bookHtml = bookHtml + "<strong>$" + currentBook.price.toLocaleString() + "</strong>";
+                    
+                    bookHtml = bookHtml + "</div>";
+                    
+                    // Put it on the screen
+                    containerBox.innerHTML = containerBox.innerHTML + bookHtml;
+                }
+            }
+        }
+        
+        // 4. Update the total string at the very bottom
+        var totalText = "$" + totalPriceAmount.toLocaleString() + ".00 AUD";
+        document.getElementById('total-price').innerHTML = totalText;
+        
     </script>
 </body>
 </html>

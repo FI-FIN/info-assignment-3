@@ -3,89 +3,537 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Antique Books and Curios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <title>About | The Antique Bookshop & Curios</title>
+    
+    <!-- Grabbed these fonts from Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --ink: #1A1A1A;
-            --bg: #ffffff;
-            --muted: #8E8E93;
-            --heritage: #A39684;
-            --border: #EEEEEE;
+
+
+        /* Set up the body */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f8f8f8; 
+            font-family: 'Inter', sans-serif; 
+            color: #1A1A1A; 
+            overflow-x: hidden; 
         }
 
-        body, html { margin: 0; padding: 0; background-color: #f8f8f8; font-family: 'Inter', sans-serif; color: var(--ink); overflow-x: hidden; }
-        .viewport { max-width: 1440px; margin: 0 auto; background-color: #fff; min-height: 100vh; position: relative; box-shadow: 0 0 100px rgba(0,0,0,0.1); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
 
-        /* --- HEADER (Exactly synced with Index) --- */
-        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
-        .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .brand { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; color: var(--heritage); }
+        html { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f8f8f8; 
+            font-family: 'Inter', sans-serif; 
+            color: #1A1A1A; 
+            overflow-x: hidden; 
+        }
+
+        .viewport { 
+            max-width: 1440px; 
+            margin: 0 auto; 
+            background-color: #ffffff; 
+            min-height: 100vh; 
+            position: relative; 
+            box-shadow: 0 0 100px rgba(0,0,0,0.1); 
+        }
+
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 60px; 
+        }
+
+        /* --- HEADER STYLES (Copied from index.html) --- */
+        .top-header-area { 
+            padding: 24px 0; 
+            border-bottom: 1px solid #EEEEEE; 
+            margin-bottom: 40px; 
+        }
+
+        .brand-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px; 
+        }
+
+        .brand { 
+            font-size: 11px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.3em; 
+            color: #A39684; 
+        }
         
-        .header-utils { display: flex; gap: 15px; align-items: center; position: relative; }
+        .header-utils { 
+            display: flex; 
+            gap: 15px; 
+            align-items: center; 
+            position: relative; 
+        }
 
         .icon-circle { 
-            width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); 
-            display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; background: #fff; position: relative; text-decoration: none; color: #000;
+            width: 44px; 
+            height: 44px; 
+            border-radius: 50%; 
+            border: 1px solid #EEEEEE; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            background: #ffffff; 
+            position: relative; 
+            text-decoration: none; 
+            color: #000000; 
         }
-        .icon-circle:hover { border-color: var(--ink); }
+
+        .icon-circle:hover { 
+            border-color: #1A1A1A; 
+        }
 
         #cart-count { 
-            position: absolute; top: -5px; right: -5px; background: #000; color: #fff; 
-            font-size: 10px; width: 18px; height: 18px; border-radius: 50%; 
-            display: none; align-items: center; justify-content: center; font-weight: 900; 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+            background: #000000; 
+            color: #ffffff; 
+            font-size: 10px; 
+            width: 18px; 
+            height: 18px; 
+            border-radius: 50%; 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 900; 
         }
 
-        .nav-links { display: flex; gap: 35px; list-style: none; padding: 0; margin: 0; }
-        .nav-links li { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-        .nav-links a { text-decoration: none; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--ink); }
-        .nav-links li.active a { color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
+        /* Links for the top bar */
+        .nav-links { 
+            display: flex; 
+            gap: 35px; 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
 
-        /* --- CONTENT --- */
-        .hero-title { font-size: 82px; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; margin: 60px 0 40px; }
-        .content-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; padding-bottom: 100px; }
-        .editorial-quote { font-family: 'Playfair Display', serif; font-size: 28px; font-style: italic; line-height: 1.6; color: #333; }
-        .stat-block { border-left: 3px solid var(--ink); padding-left: 30px; margin-bottom: 40px; }
-        .stat-number { font-size: 48px; font-weight: 900; letter-spacing: -0.04em; }
-        .stat-label { font-family: 'JetBrains Mono'; font-size: 11px; text-transform: uppercase; color: var(--heritage); margin-top: 5px; }
+        .nav-links li { 
+            font-size: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            color: #8E8E93; 
+        }
+
+        .nav-links a { 
+            text-decoration: none; 
+            color: #8E8E93; 
+            font-size: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            transition: color 0.2s; 
+        }
+
+        .nav-links a:hover { 
+            color: #1A1A1A; 
+        }
+
+        .nav-links li.active a { 
+            color: #1A1A1A; 
+            border-bottom: 2px solid #1A1A1A; 
+            padding-bottom: 4px; 
+        }
+
+        /* --- CONTENT STYLES --- */
+        .hero-title { 
+            font-size: 82px; 
+            font-weight: 900; 
+            line-height: 0.9; 
+            letter-spacing: -0.05em; 
+            margin: 60px 0 40px; 
+        }
+
+        .content-grid { 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr; 
+            gap: 80px; 
+            padding-bottom: 80px; 
+        }
+
+        .editorial-quote { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 28px; 
+            font-style: italic; 
+            line-height: 1.6; 
+            color: #333333; 
+        }
+
+        .stat-block { 
+            border-left: 3px solid #1A1A1A; 
+            padding-left: 30px; 
+            margin-bottom: 40px; 
+        }
+
+        .stat-number { 
+            font-size: 48px; 
+            font-weight: 900; 
+            letter-spacing: -0.04em; 
+        }
+
+        .stat-label { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+            color: #A39684; 
+            margin-top: 5px; 
+        }
+
+        /* --- CREDENTIALS BOX --- */
+        .credentials-section {
+            padding: 80px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .trust-card {
+            width: 900px;
+            background: #F9F9F9;
+            padding: 60px;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+            border: 1px solid #EEEEEE;
+        }
+
+        .trust-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #8E8E93;
+            margin-bottom: 20px;
+        }
+
+        .trust-body { 
+            font-size: 16px; 
+            line-height: 1.7; 
+            color: #444444; 
+        }
+        
+        .trust-body b { 
+            color: #000000; 
+        }
+
+        .logo-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .logo-placeholder {
+            height: 50px;
+            border: 1px solid #dddddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #888888;
+            background: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- THE VAULT TEXT AREA --- */
+        .vault-section {
+            padding: 100px 0 120px;
+        }
+
+        .vault-header {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+
+        .vault-title {
+            font-size: 42px; 
+            font-weight: 900; 
+            letter-spacing: -0.04em; 
+            margin: 0;
+        }
+
+        .vault-stat {
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 12px; 
+            color: #8E8E93;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vault-text {
+            font-size: 18px; 
+            line-height: 1.7; 
+            color: #444444; 
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        /* --- BOTTOM FOOTER --- */
+        .visit-section {
+            padding: 100px 0;
+            background: #1A1A1A;
+            color: #ffffff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .contact-item h4 { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 10px; 
+            text-transform: uppercase; 
+            color: #A39684; 
+            margin-bottom: 15px; 
+            letter-spacing: 1px;
+        }
+        
+        .contact-item p { 
+            font-size: 16px; 
+            line-height: 1.6; 
+            opacity: 0.8; 
+        }
+        
+        .contact-item a { 
+            color: #ffffff; 
+            text-decoration: underline; 
+            text-underline-offset: 4px; 
+        }
+
+        /* ========================================================= */
+        /* MOBILE STYLES */
+        /* ========================================================= */
+        @media (max-width: 800px) {
+            .viewport { 
+                width: 100% !important; 
+                box-shadow: none !important; 
+            }
+            .container { 
+                padding: 0 24px !important; 
+            }
+
+            .top-header-area { 
+                padding: 20px 0 !important; 
+                margin-bottom: 20px !important; 
+            }
+            
+            .brand-row { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 15px; 
+            }
+            
+            .header-utils { 
+                align-self: flex-end; 
+                margin-top: -30px; 
+            }
+            
+            .nav-links { 
+                overflow-x: auto; 
+                width: 100%; 
+                padding-bottom: 10px; 
+                gap: 20px !important; 
+                scrollbar-width: none; 
+            }
+            
+            .nav-links::-webkit-scrollbar { 
+                display: none; 
+            }
+
+            .hero-title { 
+                font-size: 52px !important; 
+                line-height: 1 !important; 
+                margin: 30px 0 !important; 
+            }
+            
+            .editorial-quote { 
+                font-size: 22px !important; 
+            }
+            
+            .stat-number { 
+                font-size: 38px !important; 
+            }
+            
+            .vault-title { 
+                font-size: 32px !important; 
+            }
+
+
+            .content-grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 40px !important; 
+            }
+            .trust-card { 
+                grid-template-columns: 1fr !important; 
+                gap: 40px !important; 
+            }
+            .contact-grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 40px !important; 
+            }
+
+            .trust-card { 
+                width: 100% !important; 
+                padding: 30px 20px !important; 
+                box-sizing: border-box !important; 
+            }
+            
+            .hero-section { 
+                padding: 40px 0 !important; 
+            }
+            
+            .credentials-section { 
+                padding: 60px 0 !important; 
+            }
+            
+            .visit-section { 
+                padding: 60px 0 !important; 
+            }
+            
+            .vault-section { 
+                padding: 60px 0 !important; 
+            }
+            
+            .vault-header { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 10px; 
+                margin-bottom: 20px !important; 
+            }
+        }
     </style>
 </head>
+
 <body onload="updateCartUI()">
-    <div class="viewport">
-        <div class="container">
-            <header>
-                <div class="brand-row">
-                    <div class="brand">Antique Books and Curios</div>
-                    <div class="header-utils">
-                        <a href="cart.html" class="icon-circle">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <div class="viewport" id="main-viewport-div">
+        <div class="container" id="main-container-div">
+            
+            <!-- Using a standard div instead of header tag -->
+            <div class="top-header-area" id="header-div">
+                <div class="brand-row" id="brand-row-div">
+                    <div class="brand" id="logo-text-div">Antique Books and Curios</div>
+                    <div class="header-utils" id="utils-div">
+                        
+                        <a href="cart.html" class="icon-circle" id="cart-icon-link">
+                            <!-- SVG icon copy pasted -->
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
                             <div id="cart-count">0</div>
                         </a>
+                        
                     </div>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="exhibitions.html">Exhibitions</a></li>
-                    <li class="active"><a href="about_page.html">About</a></li>
+                
+                <ul class="nav-links" id="nav-list">
+                    <li id="home-link-li"><a href="index.html">Home</a></li>
+                    <li id="exhib-link-li"><a href="exhibitions.html">Exhibitions</a></li>
+                    <li class="active" id="about-link-li"><a href="about_page.html">About</a></li>
                 </ul>
-            </header>
+            </div>
 
-            <h1 class="hero-title">An Oasis<br>of Serenity.</h1>
-            <div class="content-grid">
-                <div class="editorial-quote">“Less than a 15-minute drive from the city centre is a sanctuary for the written word.”</div>
-                <div>
-                    <div class="stat-block">
-                        <div class="stat-number">50+ Years</div>
-                        <div class="stat-label">Proprietor Experience / Sydney, NSW</div>
+            <!-- Main top section -->
+            <h1 class="hero-title" id="page-hero-title">An Oasis<br>of Serenity.</h1>
+            
+            <div class="content-grid" id="about-content-box">
+                <div class="editorial-quote" id="quote-box">
+                    “Less than a 15-minute drive from the bustling city centre of Sydney is a sanctuary for the written word.”
+                </div>
+                
+                <div id="stats-box">
+                    <div class="stat-block" id="years-stat">
+                        <div class="stat-number" id="fifty-years">50+ Years</div>
+                        <div class="stat-label" id="sydney-label">Proprietor Experience / Sydney, NSW</div>
                     </div>
-                    <p style="line-height: 1.7; color: #444;">Established in 1976, we are a bone fide dealer in antiquarian books and a proud member of <b>ANZAAB</b> and <b>ILAB</b>.</p>
+                    <p style="line-height: 1.7; color: #444444;" id="peter-bio">
+                        Proprietor Peter has been selling antique and collectible books to libraries, dealers, and interested individuals for nearly half a century from our location in Crows Nest.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Credentials Box -->
+            <div class="credentials-section" id="trust-section">
+                <div class="trust-card" id="trust-card-container">
+                    <div id="trust-text">
+                        <div class="trust-title" id="prov-title">Provenance & Integrity</div>
+                        <div class="trust-body" id="prov-body">
+                            As a bona fide dealer in antiquarian books, Peter is a member of both the Australia and New Zealand Association of Antiquarian Booksellers (<b>ANZAAB</b>) and the International League of Antiquarian Booksellers (<b>ILAB</b>). 
+                            <br><br>
+                            You can be assured of the provenance and integrity of any vintage books. We guarantee the authenticity of all items, provide accurate and honest descriptions highlighting any defects, and always operate a transparent pricing policy.
+                        </div>
+                    </div>
+                    <div class="logo-stack" id="logos">
+                        <div class="logo-placeholder" id="anzaab-logo">Member ANZAAB</div>
+                        <div class="logo-placeholder" id="ilab-logo">Member ILAB</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vault Text Section -->
+            <div class="vault-section" id="vault-area">
+                <div class="vault-header" id="vault-heading-area">
+                    <h2 class="vault-title" id="vault-h2">The Vault</h2>
+                    <div class="vault-stat" id="vault-inventory">Total Inventory: ~20,000 Volumes</div>
+                </div>
+                
+                <p class="vault-text" id="vault-paragraph-1">
+                    Antiquarian books are usually valued more as physical objects rather than purely for the content; consideration is made to the edition, the quality of printing and illustrations, or the extravagance and care taken in the binding.
+                </p>
+                
+                <p class="vault-text" id="vault-paragraph-2">
+                    Covering a broad range of subjects and time periods, you will find real antiquities such as the highly desirable <i>Carey’s New and Correct English Atlas</i> (1787), alongside books of great interest to the general reader. Whether you are interested in Aboriginal art, aviation, history of the Pacific, travel, or classic literature, we will be sure to have something of interest to you.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Footer Contact Section -->
+        <div class="visit-section" id="dark-footer">
+            <div class="container" id="footer-container">
+                <div class="contact-grid" id="footer-grid">
+                    
+                    <div class="contact-item" id="contact-1">
+                        <h4 id="loc-title">Location</h4>
+                        <p id="loc-text">Tyrrell's Building<br>Level 1, 328 Pacific Highway<br>Crows Nest, NSW 2065<br>Australia</p>
+                    </div>
+                    
+                    <div class="contact-item" id="contact-2">
+                        <h4 id="hours-title">Hours of Operation</h4>
+                        <p id="hours-text">Tuesday — Saturday<br>10:00 AM to 5:00 PM</p>
+                        <p style="font-size: 12px; margin-top: 10px; opacity: 0.5;" id="closed-text">Closed Sundays, Mondays & Public Holidays</p>
+                    </div>
+                    
+                    <div class="contact-item" id="contact-3">
+                        <h4 id="inq-title">Direct Inquiry</h4>
+                        <p id="inq-text">Telephone: +61 2 9966 9925<br>Email: <a href="mailto:peter@antiquebookshop.com.au">peter@antiquebookshop.com.au</a></p>
+                        <p style="margin-top: 15px;" id="insta-text">Instagram: <a href="#">@theantiquebookshop</a></p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- Link the javascript file so the cart bubble works -->
     <script src="data.js"></script>
 </body>
 </html>
