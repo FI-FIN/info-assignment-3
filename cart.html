@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Antique Bookshop & Curios | Your Collection</title>
     
-    <!-- Getting fonts from google -->
+    <!-- google fontys link -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Setup the background */
+        /* setup background */
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #F9F9F9; 
             padding: 80px; 
         }
         
-        /* The white box in the middle */
+        /* The white box mid  */
         .cart-card { 
             max-width: 600px; 
             margin: 0 auto; 
@@ -34,7 +34,7 @@
             margin-bottom: 40px; 
         }
         
-        /* The row for each book */
+        /* row for each book */
         .item { 
             display: flex; 
             justify-content: space-between; 
@@ -42,7 +42,7 @@
             border-bottom: 1px solid #eeeeee; 
         }
         
-        /* The total price row */
+        /*  total price row */
         .total { 
             font-size: 24px; 
             font-weight: 900; 
@@ -51,7 +51,7 @@
             justify-content: space-between; 
         }
         
-        /* The black checkout button */
+        /*  black checkout button */
         .btn { 
             display: block; 
             background-color: #000000; 
@@ -69,7 +69,7 @@
             transform: translateY(-2px);
         }
 
-        /* The grey continue button */
+        /* The grey continue  */
         .continue-btn {
             display: block; 
             text-align: center; 
@@ -86,7 +86,7 @@
             color: #000000; 
         }
 
-        /* MOBILE PHONES */
+        /* mobile section */
         @media (max-width: 768px) {
             
             body { 
@@ -123,35 +123,35 @@
 </head>
 
 <body>
-    <!-- Main white box -->
+    <!-- main white box -->
     <div class="cart-card" id="cart-main-box">
         
         <h1 class="title" id="cart-h1-title">Acquisition Review</h1>
         
-        <!-- Empty div where JS puts the books -->
+        <!-- Empty div put books -->
         <div id="cart-items"></div>
         
-        <!-- Total Row -->
+
         <div class="total" id="total-row-div">
             <span id="total-text-span">Total</span>
             <span id="total-price">$0.00</span>
         </div>
         
-        <!-- Buttons at the bottom -->
+
         <a href="checkout.html" class="btn" id="checkout-button">Proceed to Secure Checkout</a>
         <a href="index.html" class="continue-btn" id="go-back-button">Continue Browsing</a>
         
     </div>
 
-    <!-- Get the database -->
+    <!-- database connect -->
     <script src="data.js"></script>
     
     <script>
-        // 1. Get the cart from storage
+
         var storageString = window.localStorage.getItem('bibliotheca_cart');
         var cartArray = [];
 
-        // Check if there is actually data in the storage
+        // Check
         if (storageString != null) {
             cartArray = JSON.parse(storageString);
         }
@@ -159,7 +159,7 @@
         var containerBox = document.getElementById('cart-items');
         var totalPriceAmount = 0;
 
-        // 2. What to do if the cart is empty
+
         if (cartArray.length == 0) {
             
 
@@ -170,10 +170,9 @@
             containerBox.innerHTML = emptyMessage;
         }
 
-        // 3. What to do if the cart has books in it
         if (cartArray.length > 0) {
             
-            // Loop through all the books in the cart array
+            // Loop cart array
             for (var i = 0; i < cartArray.length; i++) {
                 var bookId = cartArray[i];
                 var currentBook = inventory[bookId];
@@ -181,10 +180,10 @@
 
                 if (currentBook != null) {
                     
-                    // Add the price to the total
+                    // total math
                     totalPriceAmount = totalPriceAmount + currentBook.price;
                     
-                    // Build the HTML for the row piece by piece
+   
                     var bookHtml = "<div class='item'>";
                     bookHtml = bookHtml + "<span>" + currentBook.title + "</span>";
                     
@@ -193,13 +192,13 @@
                     
                     bookHtml = bookHtml + "</div>";
                     
-                    // Put it on the screen
+
                     containerBox.innerHTML = containerBox.innerHTML + bookHtml;
                 }
             }
         }
         
-        // 4. Update the total string at the very bottom
+
         var totalText = "$" + totalPriceAmount.toLocaleString() + ".00 AUD";
         document.getElementById('total-price').innerHTML = totalText;
         

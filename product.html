@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport tag ensures mobile screens scale properly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Antique Bookshop & Curios</title>
     
-    <!-- External Google Fonts -->
+    <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- GLOBAL RESET & RULES --- */
+        /* ---  reset--- */
         * { 
             margin: 0; 
             padding: 0; 
@@ -21,10 +20,10 @@
             font-family: 'Inter', sans-serif; 
             color: #000000; 
             background-color: #ffffff; 
-            overflow: hidden; /* Stops scrolling on desktop split screen */
+            overflow: hidden; 
         }
 
-        /* --- TOP HEADER (Copy pasted to match index) --- */
+        /* --- remeber copy from index) --- */
         .top-header-area {
             display: flex; 
             justify-content: space-between;
@@ -66,7 +65,7 @@
             color: #000000; 
         }
 
-        /* Cart circle button */
+        /* cart circle button */
         .icon-circle { 
             width: 44px; 
             height: 44px; 
@@ -102,14 +101,14 @@
             font-weight: 900; 
         }
 
-        /* --- 50/50 SPLIT-SCREEN LAYOUT --- */
+
         .main-container {
             display: grid;
             grid-template-columns: 1fr 1fr; 
-            height: calc(100vh - 95px); /* Forces it to fit exactly under the header */
+            height: calc(100vh - 95px); 
         }
 
-        /* --- LEFT COLUMN (Visual Cover) --- */
+
         .visual-side {
             background-color: #EAEAEA;
             display: flex;
@@ -130,10 +129,10 @@
             border-radius: 4px;
         }
 
-        /* --- RIGHT COLUMN (Archival Text Info) --- */
+       
         .info-side {
             padding: 60px 80px;
-            overflow-y: auto; /* Independent scroll so left image stays static */
+            overflow-y: auto; 
             scrollbar-width: none; 
             padding-bottom: 120px;
         }
@@ -153,7 +152,7 @@
             text-transform: uppercase;
         }
 
-        /* --- TYPOGRAPHY --- */
+        /* --- words --- */
         .ref-id {
             font-family: 'JetBrains Mono', monospace;
             font-size: 10px; 
@@ -179,7 +178,6 @@
             margin-bottom: 40px;
         }
 
-        /* --- ADD TO COLLECTION BUTTON --- */
         .btn-add {
             background: #000000; 
             color: #ffffff; 
@@ -201,10 +199,10 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
         }
         .btn-add.added { 
-            background-color: #2A9B7E; /* Green color for added state */
+            background-color: #2A9B7E; /* Green color */
         }
 
-        /* --- TECHNICAL DETAILS GRID --- */
+        /* --- the big GRID --- */
         .metadata-grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -231,7 +229,7 @@
             font-weight: 700; 
         }
 
-        /* --- LIBRARIAN'S NOTE --- */
+        /* --- lib note at the bottom --- */
         .librarian-section h3 { 
             font-size: 11px; 
             font-weight: 800; 
@@ -249,15 +247,15 @@
             max-width: 580px; 
         }
 
-        /* ========================================================= */
-        /* --- MOBILE STYLES                                         --- */
-        /* ========================================================= */
+
+        /* --- mobile --- */
+
         @media (max-width: 800px) {
             body { 
-                overflow-y: auto; /* Restore scroll on mobile */
+                overflow-y: auto;
             }
             
-            /* Stack header on mobile */
+     
             .top-header-area { 
                 padding: 20px !important; 
                 flex-direction: column; 
@@ -278,7 +276,7 @@
                 right: 20px; 
             }
             
-            /* Collapse 50/50 split into single vertical block */
+            /* Collapse */
             .main-container { 
                 grid-template-columns: 1fr !important; 
                 height: auto !important; 
@@ -311,7 +309,7 @@
                 font-size: 13px !important; 
             }
             
-            /* Unrolled the metadata grid */
+            /* data grid */
             .metadata-grid { 
                 grid-template-columns: 1fr !important; 
                 gap: 20px !important; 
@@ -326,7 +324,7 @@
 
 <body onload="init()">
 
-    <!-- Replaced header with a regular div -->
+
     <div class="top-header-area" id="header-box">
         <div class="brand-label" id="logo-text">Antique Books and Curios</div>
         
@@ -339,7 +337,7 @@
         </div>
         
         <a href="cart.html" class="icon-circle" id="cart-icon">
-            <!-- Unminified copy pasted SVG from index.html -->
+            <!-- match index.html -->
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
@@ -348,37 +346,37 @@
         </a>
     </div>
 
-    <!-- Replaced main with a regular div -->
+    <!-- vh -->
     <div class="main-container" id="details-main-box">
         
-        <!-- Left Side: Visual Experience -->
+
         <div class="visual-side" id="visual-side-div">
             <div class="book-cover-wrapper" id="img-container">
                 <img id="b-img" src="" alt="Book Cover">
             </div>
         </div>
 
-        <!-- Right Side: Archival Information -->
+  
         <div class="info-side" id="text-side-div">
             
-            <!-- Go Back Button -->
+            <!-- Go Back -->
             <a href="index.html" class="back-link" id="return-link">
-                <!-- SVG back arrow -->
+                <!-- back arrow -->
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3">
                     <path d="M15 18l-6-6 6-6"></path>
                 </svg>
                 Return to Catalogue
             </a>
 
-            <!-- Book details targets -->
+            <!--  details  -->
             <div class="ref-id" id="b-ref">ARCHIVE REF: ...</div>
             <h1 class="item-title" id="b-title">Loading...</h1>
             <div class="author" id="b-author">...</div>
 
-            <!-- Add to Cart Button -->
+            <!--  to Cart Button -->
             <button class="btn-add" id="add-btn" onclick="addItem()">Add to Private Collection</button>
 
-            <!-- Technical Metadata Grid -->
+            <!--grid -->
             <div class="metadata-grid" id="specs-grid">
                 <div class="data-point" id="data-point-1">
                     <div class="label">Current Valuation</div>
@@ -398,7 +396,7 @@
                 </div>
             </div>
 
-            <!-- Note section -->
+            <!--note section -->
             <div class="librarian-section" id="note-section">
                 <h3>Librarian's Note</h3>
                 <p class="note-text" id="b-note">
@@ -412,7 +410,7 @@
     <script src="data.js"></script>
     
     <script>
-        // Extracting URL parameter (e.g. product.html?id=iliad)
+
         var params = new URLSearchParams(window.location.search);
         var bookId = params.get('id');
         
@@ -421,15 +419,14 @@
         var book = inventory[bookId];
 
         function init() {
-            // Error handling if ID is invalid
+            // error wrong id 
             if (book == null) {
                 console.log("Error: Book details not found!");
                 document.getElementById('b-title').innerText = "Item Not Found";
                 return;
             }
             
-            // Injecting details into HTML elements
-            // Creates standard split title using standard variables
+
             var splitTitle = book.title.replace(' ', ' <br>');
             document.getElementById('b-title').innerHTML = splitTitle; 
             
@@ -444,29 +441,29 @@
             }
         }
 
-        // --- CART SAVE FUNCTION ---
+        // --- cart SAVE fix section when you hav e time  ---
         function addItem() {
             var cart = [];
             var storageString = window.localStorage.getItem('bibliotheca_cart');
             
-            // Check if cart already exists in storage
+            // if cart already exists in storage
             if (storageString != null) {
                 cart = JSON.parse(storageString);
             }
             
-            // Add the new item ID to our array list
+            // new item ID to array list
             cart.push(bookId);
             console.log("Adding book to cart list: " + bookId);
             
-            // Save it back to local storage
+   
             window.localStorage.setItem('bibliotheca_cart', JSON.stringify(cart));
             
-            // Visual feedback on the button
+            // feeback on the button
             var btn = document.getElementById('add-btn');
             btn.classList.add('added');
             btn.innerText = "✓ Added to Collection";
             
-            // Update the badge in the top bar instantly
+         
             if (typeof updateCartUI === 'function') {
                 updateCartUI();
             }

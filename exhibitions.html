@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exhibitions | Antique Books and Curios</title>
     
-    <!-- Grabbed fonts from Google Fonts -->
+    <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     
     <style>
@@ -19,7 +19,7 @@
          * Logo Tan: #A39684
          */
 
-        /* Setup the body */
+        /*  body */
         body { 
             margin: 0; 
             padding: 0; 
@@ -29,7 +29,7 @@
             overflow-x: hidden; 
         }
 
-        /* Copied body settings for html just in case */
+        /* fgh*/
         html { 
             margin: 0; 
             padding: 0; 
@@ -54,7 +54,7 @@
             padding: 0 60px; 
         }
 
-        /* --- TOP HEADER (Copy pasted to match other pages) --- */
+        /* --- top header  --- */
         .top-header-area { 
             padding: 24px 0; 
             border-bottom: 1px solid #EEEEEE; 
@@ -118,7 +118,7 @@
             font-weight: 900; 
         }
 
-        /* Navigation menu links */
+        /*  menu links */
         .nav-links { 
             display: flex; 
             gap: 35px; 
@@ -155,7 +155,6 @@
             padding-bottom: 4px; 
         }
 
-        /* --- CONTENT STYLES --- */
         .hero-title { 
             font-size: 82px; 
             font-weight: 900; 
@@ -164,7 +163,7 @@
             margin: 60px 0 60px; 
         }
 
-        /* Event layout cards */
+        /* event layout cards */
         .event-card { 
             display: grid; 
             grid-template-columns: 350px 1fr; 
@@ -209,9 +208,9 @@
             color: #444444; 
         }
         
-        /* ========================================================= */
-        /* --- MOBILE STYLING (RESPONSIVENESS)                       */
-        /* ========================================================= */
+
+        /* --- mobile */
+
         @media (max-width: 768px) {
             .container { 
                 padding: 0 20px; 
@@ -237,7 +236,7 @@
                 font-size: 10px;
             }
 
-            /* Stack cards vertically on phones */
+            /* stack cards vertically on phones */
             .event-card {
                 display: flex;
                 flex-direction: column; 
@@ -260,15 +259,15 @@
     <div class="viewport" id="main-viewport-div">
         <div class="container" id="main-container-div">
             
-            <!-- Replaced header with standard div -->
+            <!--  header  standard div -->
             <div class="top-header-area" id="top-header-box">
                 <div class="brand-row" id="brand-row-box">
                     <div class="brand" id="logo-text">Antique Books and Curios</div>
                     <div class="header-utils" id="right-side-utils">
                         
-                        <!-- Cart Link -->
+                        <!-- cart link -->
                         <a href="cart.html" class="icon-circle" id="cart-btn-link">
-                            <!-- Unminified copy pasted SVG -->
+                            <!-- fix section -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
                                 <path d="M16 10a4 4 0 0 1-8 0"></path>
@@ -286,7 +285,7 @@
                 </ul>
             </div>
 
-            <!-- Page Title -->
+            <!--  title -->
             <h1 class="hero-title" id="exhibitions-big-title">Exhibitions<br>& Events</h1>
 
             <!-- Rare Book Fair Event Card -->
@@ -302,7 +301,7 @@
         </div>
     </div>
     
-    <!-- Link the database and cart bubble checking scripts -->
+    <!-- link to the data page -->
     <script src="data.js"></script>
     <script>
 

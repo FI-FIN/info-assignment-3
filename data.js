@@ -1,4 +1,4 @@
-// --- MY BOOK DATABASE ---
+// --- data ---
 var inventory = {
     "iliad": { 
         title: "The Iliad", 
@@ -43,13 +43,13 @@ var inventory = {
 };
 
 
-// --- SHOPPING CART FUNCTIONS ---
+// --- shoping cart---
 
-// This gets the cart data from the browser
+
 function getCart() {
     var storageString = window.localStorage.getItem("bibliotheca_cart");
     
-    // console.log("Testing if storage works: " + storageString); // left this in for debugging
+    // console.log("Testing if storage works: " + storageString); // 
     
 
     if (storageString == null) {
@@ -65,7 +65,6 @@ function getCart() {
 }
 
 
-// This updates the little red bubble number on the screen
 function updateCartUI() {
     var myCartArray = getCart();
     var totalItems = myCartArray.length;
@@ -74,21 +73,20 @@ function updateCartUI() {
     
     var redBubbleElement = document.getElementById("cart-count");
     
-    
+
     if (redBubbleElement == null) {
         return; 
     }
     
-    // If the bubble IS on the page, update it
+    // if  bubble IS on the page, update it
     if (redBubbleElement != null) {
         redBubbleElement.innerHTML = totalItems;
         
-        // Hide it if 0
+        // Hide if 0
         if (totalItems == 0) {
             redBubbleElement.style.display = "none";
         } 
         
-        // Show it if more than 0
         if (totalItems > 0) {
             redBubbleElement.style.display = "flex";
         }

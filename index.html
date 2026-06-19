@@ -44,7 +44,7 @@
             overflow-x: hidden; 
         }
 
-        /* Copying the body setup just in case ;{}*/
+        /* */
         html { 
             margin: 0; 
             padding: 0; 
@@ -54,7 +54,7 @@
             overflow-x: hidden; 
         }
 
-        /* Main box for the website */
+        /* Main box  */
         .viewport { 
             max-width: 1440px; 
             margin: 0 auto; 
@@ -71,7 +71,7 @@
             padding: 0 60px; 
         }
 
-        /* --- TOP HEADER AREA --- */
+        /* --- header arae --- */
         header { 
             padding: 24px 0; 
             border-bottom: 1px solid #EEEEEE; 
@@ -108,7 +108,7 @@
             gap: 10px; 
         }
 
-        /* Hiding the search bar by default */
+        /* Hiding the search bar default */
         #search-input-wrap { 
             width: 0; 
             overflow: hidden; 
@@ -117,7 +117,7 @@
             align-items: center; 
         }
 
-        /* adds this class to open it */
+        /* open it */
         #search-input-wrap.active { 
             width: 300px; 
         }
@@ -133,7 +133,6 @@
             outline: none; 
         }
 
-        /* --- ICONS --- */
         /* Circle around the search icon */
         .icon-circle { 
             width: 44px; 
@@ -150,12 +149,12 @@
             color: #000000; 
         }
 
-        /* Hover effect for the icon circle */
+        /* Hover effect for icon circle */
         .icon-circle:hover { 
             border-color: #1A1A1A; 
         }
 
-        /* The red notification bubble for the cart */
+        /* notification bubble for cart */
         #cart-count { 
             position: absolute; 
             top: -5px; 
@@ -172,7 +171,7 @@
             font-weight: 900; 
         }
 
-        /* --- LINKS --- */
+
         .nav-links { 
             display: flex; 
             gap: 35px; 
@@ -199,14 +198,14 @@
             color: #1A1A1A; 
         }
 
-        /* Makes the current page link dark */
+        /* link dark */
         .nav-links li.active a { 
             color: #1A1A1A; 
             font-weight: 900; 
             border-bottom: none; 
         }
 
-        /* --- MAIN TEXT AND AI BOX --- */
+   
         .hero-title { 
             font-size: 82px; 
             font-weight: 900; 
@@ -240,8 +239,8 @@
             margin-bottom: 10px; 
         }
 
-        /* --- THE BOOKS --- */
-        /* Book container grid */
+  
+        /* Book grid */
         .book-grid_book_hold { 
             display: grid; 
             grid-template-columns: repeat(5, 1fr); 
@@ -250,7 +249,7 @@
             padding-bottom: 150px; 
         }
 
-        /* Individual book card */
+        /* book card */
         .book-card { 
             text-decoration: none; 
             color: inherit; 
@@ -288,7 +287,7 @@
             margin-top: 5px; 
         }
 
-        /* --- BOTTOM STICKY BAR --- */
+        /* --- Bottom AI bar --- */
         .ai-sticky-container { 
             position: fixed; 
             bottom: 0; 
@@ -350,9 +349,7 @@
             to { opacity: 1; transform: translateX(0); } 
         }
 
-        /* ========================================================= */
-        /* MOBILE STYLES */
-        /* ========================================================= */
+
         @media (max-width: 800px) {
             
             .viewport { 
@@ -365,7 +362,7 @@
                 padding: 0 20px !important; 
             }
 
-            /* Redundantly defining all headers for mobile */
+            /* def all headers modile*/
             .hero-title { 
                 font-size: 42px !important; 
                 line-height: 1 !important; 
@@ -392,7 +389,7 @@
                 margin-bottom: 20px !important; 
             }
             
-            /* Stacking the top bar */
+            /* Stacking top bar */
             .top-bar { 
                 flex-direction: column; 
                 align-items: flex-start; 
@@ -421,13 +418,12 @@
                 display: none; 
             }
             
-            /* Changing grid to 2 columns */
+            /* Changing grid to 2 columns for mobil*/
             .book-grid_book_hold { 
                 grid-template-columns: repeat(2, 1fr) !important; 
                 gap: 20px 15px !important; 
             }
 
-            /* Split screen overrides copied for every div */
             .main-container { 
                 grid-template-columns: 1fr !important; 
                 height: auto !important; 
@@ -455,7 +451,7 @@
                 width: 100% !important; 
             }
             
-            /* Shrinking the AI bar */
+            /* moving ai bar AI bar */
             .ai-sticky-container { 
                 padding: 20px !important; 
             }
@@ -478,34 +474,34 @@
     </style>
 </head>
 
-<!-- Body runs the init function to load the books -->
+<!-- function to load the books -->
 <body onload="init()">
     
-    <!-- Main wrapper for the whole page -->
+    <!-- Main-->
     <div class="viewport" id="main-viewport-box">
         
-        <!-- Container to keep things centered -->
+        <!-- centered -->
         <div class="container" id="main-container-box">
             
-            <!-- TOP HEADER SECTION -->
+           
             <header id="top-header">
                 <div class="brand-row" id="brand-row-box">
                     
                     <!-- Logo Text -->
                     <div class="brand" id="brand-logo-text">Antique Books and Curios</div>
                     
-                    <!-- Right side icons (Search and Cart) -->
+                    <!-- top Right side icons -->
                     <div class="header-utils" id="header-right-side-icons">
                         
-                        <!-- SEARCH BAR AREA -->
+                        <!-- search bar area-->
                         <div class="search-container" id="top-search-area">
                             <div id="search-input-wrap">
                                 <input type="text" id="header-search" class="header-search-bar" placeholder="Find a book..." value="">
                             </div>
                             
-                            <!-- Search Icon Button -->
+                            <!-- -->
                             <div class="icon-circle" id="search-circle-btn" onclick="toggleSearch()">
-                                <!-- Copy pasted SVG for the magnifying glass -->
+                                
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="11" cy="11" r="8"></circle>
                                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -513,21 +509,21 @@
                             </div>
                         </div>
 
-                        <!-- CART BUTTON AREA -->
+                        <!-- -->
                         <a href="cart.html" class="icon-circle" id="cart-circle-btn">
-                            <!-- Copy pasted SVG for the shopping bag -->
+                            <!-- -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
                                 <path d="M16 10a4 4 0 0 1-8 0"></path>
                             </svg>
-                            <!-- The little red number bubble -->
+                            <!-- the little number bubble -->
                             <div id="cart-count">0</div>
                         </a>
                         
                     </div>
                 </div>
                 
-                <!-- NAVIGATION LINKS -->
+                <!-- NAV LINKS -->
                 <ul class="nav-links" id="navigation-list-ul">
                     <li class="active" id="nav-item-home"><a href="index.html">Home</a></li>
                     <li id="nav-item-exhibitions"><a href="exhibitions.html">Exhibitions</a></li>
@@ -535,33 +531,33 @@
                 </ul>
             </header>
 
-            <!-- MAIN CONTENT SECTION -->
+            <!-- MIAIN CONTENT -->
             <section class="hero-section" id="hero-section-main">
                 
-                <!-- Big Page Title -->
+                <!-- Big Title -->
                 <h1 id="page-header" class="hero-title">Latest<br>Catalogue</h1>
                 
-                <!-- AI Text Box (Hidden when page first loads) -->
+                <!-- ai Text Box hidding-->
                 <div id="ai-response">
                     <div class="ai-label" id="ai-label-text">Digital Librarian Analysis</div>
                     <div class="ai-text" id="ai-text">Scanning the cataloge...</div>
                 </div>
 
-                <!-- Where the javascript puts the books -->
+                <!-- where the books puts the books -->
                 <div class="book-grid_book_hold" id="grid_book_hold"></div>
                 
             </section>
         </div>
 
-        <!-- STICKY BOTTOM AI SEARCH BAR -->
+        <!--  -->
         <div class="ai-sticky-container" id="bottom-sticky-bar-wrap">
             <div class="ai-pill" id="ai-pill-box">
                 
-                <!-- Input for the AI -->
+                <!-- input ai -->
                 <input type="text" id="bottom-search" placeholder="Ask the Digital Librarian to find something specific..." value="">
                 
-                <!-- AI Search Button -->
-                <!-- Got the value first then ran the function so it works -->
+                <!-- AI Search Button no functional fix when you can! -->
+                <!-- -->
                 <button class="ai-btn" id="ai-submit-btn" onclick="var aiInput = document.getElementById('bottom-search').value; executeLibrarianSearch(aiInput);">
                     <div class="chevron-arrow" id="chevron-icon-div"></div>
                 </button>
@@ -574,9 +570,8 @@
 
     <script src="data.js"></script>
 
-    <!-- UI Logic Script -->
+    <!-- UI Logic -->
     <script>
-        // --- 1. GET ALL SCREEN ELEMENTS ---
         var grid_book_hold = document.getElementById('grid_book_hold');
         var little_ai_pill = document.getElementById('bottom-search');
         var top_boy_search = document.getElementById('header-search');
@@ -585,7 +580,6 @@
         var ai_yap = document.getElementById('ai-text');
         var header = document.getElementById('page-header');
 
-        // --- 2. START THE APP ---
         function init() {
             var allBooks = Object.keys(inventory);
             rendergrid_book_hold(allBooks); 
@@ -595,7 +589,6 @@
             }
         }
 
-        // --- 3. SHOW / HIDE TOP SEARCH ---
         function toggleSearch() {
             var searchBoxWrap = document.getElementById('search-input-wrap');
             var topSearchInput = document.getElementById('header-search');
@@ -608,10 +601,10 @@
             }
         }
 
-        // --- 4. DRAW BOOKS ON SCREEN ---
+  
         function rendergrid_book_hold(keys) {
             var grid = document.getElementById('grid_book_hold');
-            grid.innerHTML = ""; // clear it out first
+            grid.innerHTML = ""; // clear 
             
             for (var i = 0; i < keys.length; i++) {
                 var key = keys[i];
@@ -627,7 +620,7 @@
             }
         }
 
-        // --- 5. BOTTOM AI SEARCH BAR ---
+
         function executeLibrarianSearch(user_type_text) {
             if (user_type_text == "") {
                 return;
@@ -686,7 +679,7 @@
             }, 1200); 
         }
 
-        // Bottom search event listener
+        // bottom search event
         document.getElementById('bottom-search').onkeypress = function(event) {
             if (event.key == "Enter") {
                 var searchInputValue = document.getElementById('bottom-search').value;
@@ -694,7 +687,7 @@
             }
         };
 
-        // --- 6. TOP RIGHT SEARCH BAR ---
+ 
         function executetop_boy_search() {
             var topSearchInput = document.getElementById('header-search');
             var user_type_text = topSearchInput.value.toLowerCase();
@@ -753,7 +746,7 @@
             searchWrap.classList.remove('active');
         }
 
-        // Top search event listener
+        // Top search event 
         document.getElementById('header-search').onkeypress = function(event) {
             if (event.key == "Enter") {
                 event.preventDefault(); 

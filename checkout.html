@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Antique Bookshop & Curios | Checkout</title>
     
-    <!-- Grabbed fonts from google -->
+    <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- WEBSITE CONTAINER AND BODY --- */
+        /* --- body --- */
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #F2F2F2; 
@@ -20,7 +20,7 @@
             margin: 0;
         }
         
-        /* The main form container */
+        /*  main container */
         .box { 
             width: 450px; 
             background-color: #ffffff; 
@@ -40,7 +40,7 @@
             font-family: 'Inter', sans-serif;
         }
         
-        /* Black submit button */
+        /*  submit button */
         .btn { 
             width: 100%; 
             background-color: #000000; 
@@ -57,12 +57,12 @@
             background-color: #333333; 
         }
 
-        /* Error message block (hidden by default) */
+        /* if error message*/
         #ai-response {
             display: none;
         }
 
-        /* Red error message box style */
+        /* if no text message */
         .error-message {
             color: #D8000C;
             background-color: #FFBABA;
@@ -74,9 +74,9 @@
             display: none; 
         }
 
-        /* ========================================================= */
-        /* --- MOBILE STYLES FOR PHONES ---                          */
-        /* ========================================================= */
+
+        /* --- mobile*/
+
         @media (max-width: 768px) {
             .box {
                 width: 90% !important; 
@@ -97,11 +97,11 @@
 </head>
 <body>
     
-    <!-- The main checkout box -->
+    <!--   checkout box -->
     <div class="box" id="checkout-box">
         <h1 style="font-weight:900; text-transform:uppercase;">Secure Acquisition</h1>
         
-        <!-- Error box -->
+        <!-- if error box -->
         <div id="error-msg" class="error-message">Please fill out all fields to complete the acquisition.</div>
 
         <label for="name-input">Full Name</label>
@@ -110,16 +110,16 @@
         <label for="address-input">Delivery Address</label>
         <input type="text" id="address-input" placeholder="124 Heritage Lane..." required value="">
         
-        <!-- Run the validation check when clicked -->
+        <!-- validation check when clicked -->
         <button class="btn" onclick="validateAndSubmit()">Complete Purchase</button>
     </div>
 
     <script>
-        // FORM VALIDATION CHECK
+
         function validateAndSubmit() {
             console.log("Checking if inputs are empty...");
             
-            // Retrieve values from input fields
+            //  values from input fields
             var nameInputBox = document.getElementById('name-input');
             var addressInputBox = document.getElementById('address-input');
             var errorMsgBox = document.getElementById('error-msg');
@@ -127,23 +127,23 @@
             var nameValue = nameInputBox.value;
             var addressValue = addressInputBox.value;
 
-            // Trim spaces off the end of the text
+
             var trimmedName = nameValue.trim();
             var trimmedAddress = addressValue.trim();
 
             if (trimmedName == "") {
                 console.log("Validation failed: Name is empty!");
                 errorMsgBox.style.display = 'block';
-                return; // Stop running the rest of the function!
+                return; 
             }
 
             if (trimmedAddress == "") {
                 console.log("Validation failed: Address is empty!");
                 errorMsgBox.style.display = 'block';
-                return; // Stop running the rest of the function!
+                return; 
             }
 
-            // If we got here, everything is filled out correctly!
+            // If we got here, to thank you page 
             console.log("Validation passed! Directing to thank you page.");
             errorMsgBox.style.display = 'none';
             window.location.href = 'thankyou.html';

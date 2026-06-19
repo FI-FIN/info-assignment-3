@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport tag ensures text scales correctly on mobile -->
+  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Antique Bookshop & Curios | Thank You</title>
     
-    <!-- Grabbed fonts from google -->
+    <!-- google -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Setup the body and center the text */
+        /* body and center the text */
         body {
             font-family: 'Inter', sans-serif; 
             text-align: center; 
@@ -19,7 +19,7 @@
             margin: 0;
         }
 
-        /* Big confirmation title */
+        /* confirm title */
         h1 {
             font-size: 80px; 
             letter-spacing: -0.05em; 
@@ -29,13 +29,13 @@
             line-height: 0.9;
         }
 
-        /* Under title paragraph text */
+        /*  paragraph text */
         p {
             color: #888888;
             font-size: 18px;
         }
 
-        /* The back to home link button */
+        /* home link button escape */
         .back-link {
             color: #000000; 
             font-weight: 800; 
@@ -52,7 +52,7 @@
             border-color: #555555;
         }
 
-        /* MOBILE PHONES */
+        /* modile */
         @media (max-width: 768px) {
             body { 
                 padding-top: 100px; 
@@ -70,18 +70,18 @@
 </head>
 <body>
     
-    <!-- The main text on the screen -->
+    <!-- text to screen -->
     <h1 id="thankyou-title">Acquisition<br>Confirmed</h1>
     <p id="thankyou-paragraph">Your archival volumes are being prepared for dispatch.</p>
     
-    <!-- Clicking this link runs our custom javascript function below -->
+
     <a href="index.html" class="back-link" id="home-link" onclick="clearEverything()">Back to Home</a>
 
-    <!-- UI Logic Script -->
+ 
     <script>
-        // This function clears the shopping cart so the next visit starts fresh
+       
         function clearEverything() {
-            console.log("User is leaving, clearing local storage..."); // student debug line
+            console.log("User is leaving, clearing local storage..."); 
             window.localStorage.clear();
         }
     </script>
